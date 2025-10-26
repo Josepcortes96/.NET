@@ -1,0 +1,12 @@
+/home/josep/UOC/.NET/FitData/FitData.Entidades/bin/Debug/net8.0/FitData.Entidades.deps.json
+/home/josep/UOC/.NET/FitData/FitData.Entidades/bin/Debug/net8.0/FitData.Entidades.dll
+/home/josep/UOC/.NET/FitData/FitData.Entidades/bin/Debug/net8.0/FitData.Entidades.pdb
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.GeneratedMSBuildEditorConfig.editorconfig
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.AssemblyInfoInputs.cache
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.AssemblyInfo.cs
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.csproj.CoreCompileInputs.cache
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.sourcelink.json
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.dll
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/refint/FitData.Entidades.dll
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.pdb
+/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/ref/FitData.Entidades.dll

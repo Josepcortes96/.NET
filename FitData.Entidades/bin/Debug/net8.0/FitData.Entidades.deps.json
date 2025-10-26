@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FitData.Entidades/1.0.0": {
+        "runtime": {
+          "FitData.Entidades.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FitData.Entidades/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
