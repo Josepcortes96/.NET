@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("FitData.Datos")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("FitData")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d0cc2a304c025153fb6e7698650398df6dd1f04")]
-[assembly: System.Reflection.AssemblyProductAttribute("FitData.Datos")]
-[assembly: System.Reflection.AssemblyTitleAttribute("FitData.Datos")]
+[assembly: System.Reflection.AssemblyProductAttribute("FitData")]
+[assembly: System.Reflection.AssemblyTitleAttribute("FitData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
