@@ -1605,6 +1605,10 @@
       "FitData.Entidades/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "9.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.10"
+        },
         "compile": {
           "bin/placeholder/FitData.Entidades.dll": {}
         },
@@ -4732,37 +4736,41 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "FitData.Entidades >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 9.0.10",
+      "Microsoft.EntityFrameworkCore.Design >= 9.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.10"
     ]
   },
   "packageFolders": {
-    "/home/josep/.nuget/packages/": {}
+    "C:\\Users\\ricar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/josep/UOC/.NET/FitData/FitData.Datos/FitData.Datos.csproj",
+      "projectUniqueName": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
       "projectName": "FitData.Datos",
-      "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Datos/FitData.Datos.csproj",
-      "packagesPath": "/home/josep/.nuget/packages/",
-      "outputPath": "/home/josep/UOC/.NET/FitData/FitData.Datos/obj/",
+      "projectPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+      "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/josep/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj": {
-              "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj"
+            "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+              "projectPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
             }
           }
         }
@@ -4771,12 +4779,27 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[9.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[9.0.10, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[9.0.10, )"
@@ -4804,7 +4827,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

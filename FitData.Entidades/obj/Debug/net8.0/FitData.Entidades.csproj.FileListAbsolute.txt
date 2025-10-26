@@ -10,3 +10,12 @@
 /home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/refint/FitData.Entidades.dll
 /home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/FitData.Entidades.pdb
 /home/josep/UOC/.NET/FitData/FitData.Entidades/obj/Debug/net8.0/ref/FitData.Entidades.dll
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.csproj.AssemblyReference.cache
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.AssemblyInfoInputs.cache
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.AssemblyInfo.cs
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.csproj.CoreCompileInputs.cache
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.sourcelink.json
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.dll
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\refint\FitData.Entidades.dll
+C:\Users\ricar\Desktop\uoc\net\fitdata\.NET\FitData.Entidades\obj\Debug\net8.0\FitData.Entidades.pdb
