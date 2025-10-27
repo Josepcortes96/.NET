@@ -4723,26 +4723,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\akes1\\.nuget\\packages\\": {}
+    "/home/josep/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+      "projectUniqueName": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj",
       "projectName": "FitData.Entidades",
-      "projectPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
-      "packagesPath": "C:\\Users\\akes1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\obj\\",
+      "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj",
+      "packagesPath": "/home/josep/.nuget/packages/",
+      "outputPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\akes1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/josep/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4755,13 +4753,7 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.300"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -4804,7 +4796,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
