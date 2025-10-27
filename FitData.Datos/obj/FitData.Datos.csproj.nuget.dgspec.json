@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj": {}
+    "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj": {
+    "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+        "projectUniqueName": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
         "projectName": "FitData.Datos",
-        "projectPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
-        "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Datos\\obj\\",
+        "projectPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+        "packagesPath": "C:\\Users\\akes1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Datos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\akes1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
-                "projectPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
+              "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+                "projectPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
               }
             }
           }
@@ -43,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -86,21 +87,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+    "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
         "projectName": "FitData.Entidades",
-        "projectPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
-        "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ricar\\Desktop\\uoc\\net\\fitdata\\.NET\\FitData.Entidades\\obj\\",
+        "projectPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+        "packagesPath": "C:\\Users\\akes1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akes1\\Desktop\\fitdata\\.NET\\FitData.Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\akes1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,7 +126,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -168,7 +170,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

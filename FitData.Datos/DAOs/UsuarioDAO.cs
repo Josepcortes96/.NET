@@ -30,8 +30,8 @@ namespace FitData.Datos.DAOs
                         Nombre = reader.GetString(1),
                         Apellido = reader.GetString(2),
                         Nif = reader.GetString(3),
-                        Rol = reader.GetString(4)
-                        Username = reader.GetString(5)
+                        Rol = reader.GetString(4),
+                        Username = reader.GetString(5),
                         Password = reader.GetString(6)
                     });
                 }

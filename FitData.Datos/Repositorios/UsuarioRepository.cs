@@ -1,5 +1,7 @@
-using FitData.Entidades;
+﻿using FitData.Entidades;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FitData.Datos.Repositorios
 {
@@ -12,17 +14,23 @@ namespace FitData.Datos.Repositorios
             _context = context;
         }
 
-         // CREATE
+        // CREATE
         public void Add(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
         }
 
-        // READ
+        // READ ALL
         public List<Usuario> GetAll()
         {
             return _context.Usuarios.ToList();
+        }
+
+        // ✅ READ BY ID (nuevo método)
+        public Usuario GetById(int id)
+        {
+            return _context.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
         }
 
         // UPDATE

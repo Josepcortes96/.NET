@@ -1,5 +1,5 @@
 namespace FitData.Entidades;
-{
+
     public class Actividad
 {
     public int idActividad { get; set; }
@@ -9,5 +9,4 @@ namespace FitData.Entidades;
     public string sala { get; set; }         // e.g., "Sala 1"
     public int idMonitor { get; set; }
     public string idEncargado { get; set; }
-}
 }
