@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitData.Entidades")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70408782fdbe1a03de42883b6b0b94dc06193420")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80b50f548cdd5d11e1a0b55e9d5bb2ef00acab38")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitData.Entidades")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitData.Entidades")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
