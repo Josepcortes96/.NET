@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FitData.Entidades;
 
@@ -14,36 +13,22 @@ namespace FitData.Datos.Repositorios
             _context = context;
         }
 
-        public List<Horario> GetAll()
-        {
-            return _context.Horarios.ToList();
-        }
-
         public List<Horario> GetByActividad(int idActividad)
         {
-            return _context.Horarios.Where(h => h.IdActividad == idActividad).ToList();
-        }
-
-        // Nuevo: obtener horarios de una actividad para un día concreto (date.Date comparado con HoraInicio.Date)
-        public List<Horario> GetByActividadAndDate(int idActividad, DateTime date)
-        {
-            var d = date.Date;
             return _context.Horarios
-                .Where(h => h.IdActividad == idActividad && h.HoraInicio.Date == d)
-                .OrderBy(h => h.HoraInicio)
+                .Where(h => h.IdActividad == idActividad)
                 .ToList();
         }
 
-        public void Add(Horario h)
+        public void Add(Horario horario)
         {
-            if (h.PlazasTotales == 0) h.PlazasTotales = 16;
-            _context.Horarios.Add(h);
+            _context.Horarios.Add(horario);
             _context.SaveChanges();
         }
 
-        public void Update(Horario h)
+        public void Update(Horario horario)
         {
-            _context.Horarios.Update(h);
+            _context.Horarios.Update(horario);
             _context.SaveChanges();
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using FitData.Entidades;
 using FitData.Datos.Repositorios;
@@ -8,69 +7,64 @@ namespace FitData.Forms
 {
     public partial class FormHorario : Form
     {
-        private readonly HorarioRepository? _repo;
-        private readonly Horario? _horario;
-        private readonly bool _isEdit;
-        private readonly List<Actividad> _actividades;
+        private readonly HorarioRepository _horarioRepo;
+        private readonly Horario _horario;
+        private readonly Actividad _actividad;
 
-        public FormHorario(HorarioRepository repo, List<Actividad> actividades)
+        // Constructor para crear un nuevo horario
+        public FormHorario(HorarioRepository horarioRepo, Actividad actividad)
         {
             InitializeComponent();
-            _repo = repo;
-            _actividades = actividades ?? new List<Actividad>();
-            cmbActividad.DisplayMember = "Nombre";
-            cmbActividad.ValueMember = "IdActividad";
-            cmbActividad.DataSource = _actividades;
-            _isEdit = false;
+            _horarioRepo = horarioRepo;
+            _actividad = actividad;
+            _horario = new Horario();
+            lblActividad.Text = $"Actividad: {_actividad.Nombre}";
         }
 
-        public FormHorario(HorarioRepository repo, List<Actividad> actividades, Horario horario) : this(repo, actividades)
+        // Constructor para editar un horario existente
+        public FormHorario(HorarioRepository horarioRepo, Horario horario)
         {
-            _horario = horario ?? throw new ArgumentNullException(nameof(horario));
-            _isEdit = true;
-            // rellenar campos
-            cmbActividad.SelectedValue = horario.IdActividad;
-            txtDia.Text = horario.DiaSemana;
-            dtpInicio.Value = horario.HoraInicio;
-            dtpFin.Value = horario.HoraFin;
-            nudPlazas.Value = horario.PlazasTotales;
+            InitializeComponent();
+            _horarioRepo = horarioRepo;
+            _horario = horario;
+            lblActividad.Text = $"Editar horario (ID: {_horario.IdHorario})";
+
+            // ✅ Convierte TimeSpan -> DateTimePicker (usando hoy como base)
+            dtpHoraInicio.Value = DateTime.Today.Add(_horario.HoraInicio);
+            dtpHoraFin.Value = DateTime.Today.Add(_horario.HoraFin);
+            txtDiaSemana.Text = _horario.DiaSemana;
+            txtSala.Text = _horario.Sala;
+            numPlazasTotales.Value = _horario.PlazasTotales;
+            numPlazasOcupadas.Value = _horario.PlazasOcupadas;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (_repo == null) return;
-            if (_isEdit && _horario != null)
-            {
-                _horario.IdActividad = (int)cmbActividad.SelectedValue;
-                _horario.DiaSemana = txtDia.Text.Trim();
-                _horario.HoraInicio = dtpInicio.Value;
-                _horario.HoraFin = dtpFin.Value;
-                _horario.PlazasTotales = (int)nudPlazas.Value;
-                _repo.Update(_horario);
-            }
+            // ✅ Convierte DateTimePicker -> TimeSpan
+            _horario.HoraInicio = dtpHoraInicio.Value.TimeOfDay;
+            _horario.HoraFin = dtpHoraFin.Value.TimeOfDay;
+            _horario.DiaSemana = txtDiaSemana.Text.Trim();
+            _horario.Sala = txtSala.Text.Trim();
+            _horario.PlazasTotales = (int)numPlazasTotales.Value;
+            _horario.PlazasOcupadas = (int)numPlazasOcupadas.Value;
+
+            if (_horario.IdActividad == 0 && _actividad != null)
+                _horario.IdActividad = _actividad.IdActividad;
+
+            if (_horario.IdHorario == 0)
+                _horarioRepo.Add(_horario);
             else
-            {
-                var h = new Horario
-                {
-                    IdActividad = (int)cmbActividad.SelectedValue,
-                    DiaSemana = txtDia.Text.Trim(),
-                    HoraInicio = dtpInicio.Value,
-                    HoraFin = dtpFin.Value,
-                    PlazasTotales = (int)nudPlazas.Value,
-                    PlazasOcupadas = 0
-                };
-                _repo.Add(h);
-            }
+                _horarioRepo.Update(_horario);
 
+            MessageBox.Show("Horario guardado correctamente.");
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
 }
-

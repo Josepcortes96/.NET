@@ -4,112 +4,111 @@
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label lblNivelIntensidad;
         private System.Windows.Forms.Label lblSala;
+        private System.Windows.Forms.Label lblIdMonitor;
+        private System.Windows.Forms.Label lblIdEncargado;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox txtNivelIntensidad;
         private System.Windows.Forms.TextBox txtSala;
-        private System.Windows.Forms.Label lblNivel;
-        private System.Windows.Forms.TextBox txtNivel;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TextBox txtIdMonitor;
+        private System.Windows.Forms.TextBox txtIdEncargado;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnCancelar;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
             this.lblNombre = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.lblNivelIntensidad = new System.Windows.Forms.Label();
             this.lblSala = new System.Windows.Forms.Label();
+            this.lblIdMonitor = new System.Windows.Forms.Label();
+            this.lblIdEncargado = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtNivelIntensidad = new System.Windows.Forms.TextBox();
             this.txtSala = new System.Windows.Forms.TextBox();
-            this.lblNivel = new System.Windows.Forms.Label();
-            this.txtNivel = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.txtIdMonitor = new System.Windows.Forms.TextBox();
+            this.txtIdEncargado = new System.Windows.Forms.TextBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            //
-            // lblNombre
-            //
-            this.lblNombre.Location = new System.Drawing.Point(12, 15);
-            this.lblNombre.Size = new System.Drawing.Size(80, 23);
+
+            // 
+            // Labels
+            // 
             this.lblNombre.Text = "Nombre:";
-            //
-            // txtNombre
-            //
-            this.txtNombre.Location = new System.Drawing.Point(100, 12);
-            this.txtNombre.Size = new System.Drawing.Size(260, 23);
-            //
-            // lblDescripcion
-            //
-            this.lblDescripcion.Location = new System.Drawing.Point(12, 50);
-            this.lblDescripcion.Size = new System.Drawing.Size(80, 23);
-            this.lblDescripcion.Text = "Descripcion:";
-            //
-            // txtDescripcion
-            //
-            this.txtDescripcion.Location = new System.Drawing.Point(100, 47);
-            this.txtDescripcion.Size = new System.Drawing.Size(260, 60);
-            this.txtDescripcion.Multiline = true;
-            //
-            // lblSala
-            //
-            this.lblSala.Location = new System.Drawing.Point(12, 120);
-            this.lblSala.Size = new System.Drawing.Size(80, 23);
+            this.lblNombre.Location = new System.Drawing.Point(20, 20);
+            this.lblDescripcion.Text = "Descripción:";
+            this.lblDescripcion.Location = new System.Drawing.Point(20, 60);
+            this.lblNivelIntensidad.Text = "Nivel Intensidad:";
+            this.lblNivelIntensidad.Location = new System.Drawing.Point(20, 100);
             this.lblSala.Text = "Sala:";
-            //
-            // txtSala
-            //
-            this.txtSala.Location = new System.Drawing.Point(100, 117);
-            this.txtSala.Size = new System.Drawing.Size(260, 23);
-            //
-            // lblNivel
-            //
-            this.lblNivel.Location = new System.Drawing.Point(12, 155);
-            this.lblNivel.Size = new System.Drawing.Size(80, 23);
-            this.lblNivel.Text = "Nivel:";
-            //
-            // txtNivel
-            //
-            this.txtNivel.Location = new System.Drawing.Point(100, 152);
-            this.txtNivel.Size = new System.Drawing.Size(260, 23);
-            //
-            // btnSave
-            //
-            this.btnSave.Location = new System.Drawing.Point(100, 190);
-            this.btnSave.Size = new System.Drawing.Size(90, 30);
-            this.btnSave.Text = "Guardar";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            //
-            // btnCancel
-            //
-            this.btnCancel.Location = new System.Drawing.Point(210, 190);
-            this.btnCancel.Size = new System.Drawing.Size(90, 30);
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            //
+            this.lblSala.Location = new System.Drawing.Point(20, 140);
+            this.lblIdMonitor.Text = "ID Monitor:";
+            this.lblIdMonitor.Location = new System.Drawing.Point(20, 180);
+            this.lblIdEncargado.Text = "ID Encargado:";
+            this.lblIdEncargado.Location = new System.Drawing.Point(20, 220);
+
+            // 
+            // TextBoxes
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(150, 20);
+            this.txtDescripcion.Location = new System.Drawing.Point(150, 60);
+            this.txtNivelIntensidad.Location = new System.Drawing.Point(150, 100);
+            this.txtSala.Location = new System.Drawing.Point(150, 140);
+            this.txtIdMonitor.Location = new System.Drawing.Point(150, 180);
+            this.txtIdEncargado.Location = new System.Drawing.Point(150, 220);
+
+            this.txtNombre.Size = this.txtDescripcion.Size = this.txtNivelIntensidad.Size =
+                this.txtSala.Size = this.txtIdMonitor.Size = this.txtIdEncargado.Size = new System.Drawing.Size(180, 23);
+
+            // 
+            // Buttons
+            // 
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Location = new System.Drawing.Point(50, 270);
+            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Location = new System.Drawing.Point(180, 270);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+
+            // 
             // FormActividad
-            //
-            this.ClientSize = new System.Drawing.Size(380, 240);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtNivel);
-            this.Controls.Add(this.lblNivel);
-            this.Controls.Add(this.txtSala);
-            this.Controls.Add(this.lblSala);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.lblDescripcion);
-            this.Controls.Add(this.txtNombre);
+            // 
+            this.ClientSize = new System.Drawing.Size(370, 330);
             this.Controls.Add(this.lblNombre);
-            this.Text = "Actividad";
+            this.Controls.Add(this.lblDescripcion);
+            this.Controls.Add(this.lblNivelIntensidad);
+            this.Controls.Add(this.lblSala);
+            this.Controls.Add(this.lblIdMonitor);
+            this.Controls.Add(this.lblIdEncargado);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.txtNivelIntensidad);
+            this.Controls.Add(this.txtSala);
+            this.Controls.Add(this.txtIdMonitor);
+            this.Controls.Add(this.txtIdEncargado);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnCancelar);
+            this.Name = "FormActividad";
+            this.Text = "Añadir Actividad";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
     }
 }
-

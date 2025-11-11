@@ -26,7 +26,7 @@ namespace FitData.Datos
             // Si ya usas inyección de dependencias, podrías omitir esto.
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=fitdata;User Id=sa;Password=C4mbiami!;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Server=RICARD\\SQLEXPRESS;Database=fitdata;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
 

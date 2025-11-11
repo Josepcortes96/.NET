@@ -2,101 +2,125 @@
 {
     partial class FormCliente
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.ComboBox cmbActividad;
-        private System.Windows.Forms.MonthCalendar monthCalendar;
-        private System.Windows.Forms.DataGridView dataGridViewHorarios;
-        private System.Windows.Forms.DataGridView dataGridViewReservas;
-        private System.Windows.Forms.DataGridView dataGridViewLista;
-        private System.Windows.Forms.Button btnMakeReservation;
-        private System.Windows.Forms.Button btnCancelReservation;
-        private System.Windows.Forms.Button btnEditReservation;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Button btnLeaveWaiting;
 
+        private System.Windows.Forms.Label lblBienvenida;
+        private System.Windows.Forms.ComboBox comboActividades;
+        private System.Windows.Forms.Button btnVerHorarios;
+        private System.Windows.Forms.Button btnReservar;
+        private System.Windows.Forms.Button btnVerReservas;
+        private System.Windows.Forms.Button btnCancelarReserva;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DataGridView dataGridViewHorarios;
+
+        /// <summary>
+        /// Clean up resources.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) components.Dispose();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            this.cmbActividad = new System.Windows.Forms.ComboBox();
-            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.lblBienvenida = new System.Windows.Forms.Label();
+            this.comboActividades = new System.Windows.Forms.ComboBox();
+            this.btnVerHorarios = new System.Windows.Forms.Button();
+            this.btnReservar = new System.Windows.Forms.Button();
+            this.btnVerReservas = new System.Windows.Forms.Button();
+            this.btnCancelarReserva = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.dataGridViewHorarios = new System.Windows.Forms.DataGridView();
-            this.dataGridViewReservas = new System.Windows.Forms.DataGridView();
-            this.dataGridViewLista = new System.Windows.Forms.DataGridView();
-            this.btnMakeReservation = new System.Windows.Forms.Button();
-            this.btnCancelReservation = new System.Windows.Forms.Button();
-            this.btnEditReservation = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnLeaveWaiting = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorarios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLista)).BeginInit();
             this.SuspendLayout();
-            // cmbActividad
-            this.cmbActividad.Location = new System.Drawing.Point(12, 12);
-            this.cmbActividad.Size = new System.Drawing.Size(350, 23);
-            this.cmbActividad.SelectedIndexChanged += new System.EventHandler(this.cmbActividad_SelectedIndexChanged);
-            // monthCalendar
-            this.monthCalendar.Location = new System.Drawing.Point(380, 12);
-            this.monthCalendar.MaxSelectionCount = 1;
-            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
+
+            // lblBienvenida
+            this.lblBienvenida.AutoSize = true;
+            this.lblBienvenida.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblBienvenida.Location = new System.Drawing.Point(20, 20);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(160, 23);
+            this.lblBienvenida.Text = "Bienvenido, Cliente";
+
+            // comboActividades
+            this.comboActividades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboActividades.Location = new System.Drawing.Point(20, 60);
+            this.comboActividades.Name = "comboActividades";
+            this.comboActividades.Size = new System.Drawing.Size(250, 28);
+
+            // btnVerHorarios
+            this.btnVerHorarios.Location = new System.Drawing.Point(290, 60);
+            this.btnVerHorarios.Name = "btnVerHorarios";
+            this.btnVerHorarios.Size = new System.Drawing.Size(120, 28);
+            this.btnVerHorarios.Text = "Ver horarios";
+            this.btnVerHorarios.Click += new System.EventHandler(this.btnVerHorarios_Click);
+
             // dataGridViewHorarios
-            this.dataGridViewHorarios.Location = new System.Drawing.Point(12, 50);
-            this.dataGridViewHorarios.Size = new System.Drawing.Size(740, 180);
-            this.dataGridViewHorarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewHorarios.AllowUserToAddRows = false;
+            this.dataGridViewHorarios.AllowUserToDeleteRows = false;
             this.dataGridViewHorarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            // dataGridViewReservas
-            this.dataGridViewReservas.Location = new System.Drawing.Point(12, 250);
-            this.dataGridViewReservas.Size = new System.Drawing.Size(740, 120);
-            this.dataGridViewReservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewReservas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            // dataGridViewLista
-            this.dataGridViewLista.Location = new System.Drawing.Point(12, 380);
-            this.dataGridViewLista.Size = new System.Drawing.Size(740, 100);
-            this.dataGridViewLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            // buttons
-            this.btnMakeReservation.Location = new System.Drawing.Point(770, 50);
-            this.btnMakeReservation.Size = new System.Drawing.Size(150, 30);
-            this.btnMakeReservation.Text = "Reservar";
-            this.btnMakeReservation.Click += new System.EventHandler(this.btnMakeReservation_Click);
-            this.btnCancelReservation.Location = new System.Drawing.Point(770, 250);
-            this.btnCancelReservation.Size = new System.Drawing.Size(150, 30);
-            this.btnCancelReservation.Text = "Cancelar Reserva";
-            this.btnCancelReservation.Click += new System.EventHandler(this.btnCancelReservation_Click);
-            this.btnEditReservation.Location = new System.Drawing.Point(770, 290);
-            this.btnEditReservation.Size = new System.Drawing.Size(150, 30);
-            this.btnEditReservation.Text = "Editar Reserva";
-            this.btnEditReservation.Click += new System.EventHandler(this.btnEditReservation_Click);
-            this.btnRefresh.Location = new System.Drawing.Point(770, 12);
-            this.btnRefresh.Size = new System.Drawing.Size(150, 30);
-            this.btnRefresh.Text = "Refrescar";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            this.btnLeaveWaiting.Location = new System.Drawing.Point(770, 380);
-            this.btnLeaveWaiting.Size = new System.Drawing.Size(150, 30);
-            this.btnLeaveWaiting.Text = "Salir Lista Espera";
-            this.btnLeaveWaiting.Click += new System.EventHandler(this.btnLeaveWaiting_Click);
+            this.dataGridViewHorarios.Location = new System.Drawing.Point(20, 110);
+            this.dataGridViewHorarios.Name = "dataGridViewHorarios";
+            this.dataGridViewHorarios.ReadOnly = true;
+            this.dataGridViewHorarios.RowTemplate.Height = 29;
+            this.dataGridViewHorarios.Size = new System.Drawing.Size(600, 220);
+
+            // btnReservar
+            this.btnReservar.Location = new System.Drawing.Point(20, 350);
+            this.btnReservar.Name = "btnReservar";
+            this.btnReservar.Size = new System.Drawing.Size(100, 30);
+            this.btnReservar.Text = "Reservar";
+            this.btnReservar.Click += new System.EventHandler(this.btnReservar_Click);
+
+            // btnVerReservas
+            this.btnVerReservas.Location = new System.Drawing.Point(130, 350);
+            this.btnVerReservas.Name = "btnVerReservas";
+            this.btnVerReservas.Size = new System.Drawing.Size(120, 30);
+            this.btnVerReservas.Text = "Ver reservas";
+            this.btnVerReservas.Click += new System.EventHandler(this.btnVerReservas_Click);
+
+            // btnCancelarReserva
+            this.btnCancelarReserva.Location = new System.Drawing.Point(260, 350);
+            this.btnCancelarReserva.Name = "btnCancelarReserva";
+            this.btnCancelarReserva.Size = new System.Drawing.Size(150, 30);
+            this.btnCancelarReserva.Text = "Cancelar reserva";
+            this.btnCancelarReserva.Click += new System.EventHandler(this.btnCancelarReserva_Click);
+
+            // btnSalir
+            this.btnSalir.Location = new System.Drawing.Point(520, 350);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+
             // FormCliente
-            this.ClientSize = new System.Drawing.Size(940, 500);
-            this.Controls.Add(this.cmbActividad);
-            this.Controls.Add(this.monthCalendar);
+            this.ClientSize = new System.Drawing.Size(650, 420);
+            this.Controls.Add(this.lblBienvenida);
+            this.Controls.Add(this.comboActividades);
+            this.Controls.Add(this.btnVerHorarios);
             this.Controls.Add(this.dataGridViewHorarios);
-            this.Controls.Add(this.dataGridViewReservas);
-            this.Controls.Add(this.dataGridViewLista);
-            this.Controls.Add(this.btnMakeReservation);
-            this.Controls.Add(this.btnCancelReservation);
-            this.Controls.Add(this.btnEditReservation);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnLeaveWaiting);
-            this.Text = "Cliente - Reservas";
+            this.Controls.Add(this.btnReservar);
+            this.Controls.Add(this.btnVerReservas);
+            this.Controls.Add(this.btnCancelarReserva);
+            this.Controls.Add(this.btnSalir);
+            this.Name = "FormCliente";
+            this.Text = "Panel del Cliente";
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorarios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReservas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLista)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
+        #endregion
     }
 }

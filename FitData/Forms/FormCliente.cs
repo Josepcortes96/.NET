@@ -9,194 +9,163 @@ namespace FitData.Forms
 {
     public partial class FormCliente : Form
     {
-        private readonly Usuario _currentUser;
+        private readonly Usuario _cliente;
         private readonly ReservaRepository _reservaRepo;
         private readonly HorarioRepository _horarioRepo;
         private readonly ActividadRepository _actividadRepo;
         private readonly ListaEsperaRepository _listaRepo;
 
-        public FormCliente(Usuario user)
+        public FormCliente(Usuario cliente)
         {
             InitializeComponent();
-            _currentUser = user;
+            _cliente = cliente;
 
-            var ctx = new FitDataContext();
-            _reservaRepo = new ReservaRepository(ctx);
-            _horarioRepo = new HorarioRepository(ctx);
-            _actividadRepo = new ActividadRepository(ctx);
-            _listaRepo = new ListaEsperaRepository(ctx);
+            var context = new FitDataContext();
+            _reservaRepo = new ReservaRepository(context);
+            _horarioRepo = new HorarioRepository(context);
+            _actividadRepo = new ActividadRepository(context);
+            _listaRepo = new ListaEsperaRepository(context);
 
-            LoadInitialData();
+            lblBienvenida.Text = $"👋 Bienvenido, {_cliente.Nombre} ({_cliente.Username})";
+            CargarActividades();
         }
 
-        private void LoadInitialData()
+        private void CargarActividades()
         {
-            // cargar actividades en combobox
-            var acts = _actividadRepo.GetAll();
-            cmbActividad.DisplayMember = "Nombre";
-            cmbActividad.ValueMember = "IdActividad";
-            cmbActividad.DataSource = acts;
-
-            // seleccionar hoy por defecto
-            monthCalendar.SelectionStart = DateTime.Today;
-            monthCalendar.SelectionEnd = DateTime.Today;
-
-            // Cargar grids
-            LoadAvailableHorarios();
-            LoadMyReservations();
-            LoadMyWaitings();
+            var actividades = _actividadRepo.GetAll();
+            comboActividades.DataSource = actividades;
+            comboActividades.DisplayMember = "Nombre";
+            comboActividades.ValueMember = "IdActividad";
         }
 
-        private void LoadAvailableHorarios()
+        private void btnVerHorarios_Click(object sender, EventArgs e)
         {
-            if (cmbActividad.SelectedValue == null) return;
+            if (comboActividades.SelectedItem is not Actividad actividad)
+            {
+                MessageBox.Show("Selecciona una actividad.");
+                return;
+            }
 
-            int idAct = Convert.ToInt32(cmbActividad.SelectedValue);
-            DateTime selectedDate = monthCalendar.SelectionStart.Date;
+            var horarios = _horarioRepo.GetByActividad(actividad.IdActividad);
 
-            var horarios = _horarioRepo.GetByActividadAndDate(idAct, selectedDate)
+            if (horarios.Count == 0)
+            {
+                MessageBox.Show("No hay horarios disponibles para esta actividad.");
+                dataGridViewHorarios.DataSource = null;
+                return;
+            }
+
+            dataGridViewHorarios.DataSource = horarios
                 .Select(h => new
                 {
                     h.IdHorario,
-                    Actividad = _actividadRepo.GetAll().FirstOrDefault(a => a.IdActividad == h.IdActividad)?.Nombre ?? ("Act " + h.IdActividad),
-                    Dia = h.DiaSemana,
-                    HoraInicio = h.HoraInicio.ToString("HH:mm"),
-                    HoraFin = h.HoraFin.ToString("HH:mm"),
-                    PlazasTotales = h.PlazasTotales,
-                    PlazasOcupadas = h.PlazasOcupadas,
-                    PlazasLibres = Math.Max(0, h.PlazasTotales - h.PlazasOcupadas)
-                }).ToList();
-
-            dataGridViewHorarios.DataSource = horarios;
-
-            // Ocultar columnas técnicas si las hubiera
-            if (dataGridViewHorarios.Columns["IdHorario"] != null)
-                dataGridViewHorarios.Columns["IdHorario"].Visible = true;
+                    h.DiaSemana,
+                    HoraInicio = h.HoraInicio.ToString(@"hh\:mm"),
+                    HoraFin = h.HoraFin.ToString(@"hh\:mm"),
+                    h.PlazasTotales,
+                    h.PlazasOcupadas,
+                    h.Sala
+                })
+                .ToList();
         }
 
-        private void LoadMyReservations()
+        private void btnReservar_Click(object sender, EventArgs e)
         {
-            var reservas = _reservaRepo.GetByCliente(_currentUser.IdUsuario)
+            if (dataGridViewHorarios.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un horario para reservar.");
+                return;
+            }
+
+            int idHorario = (int)dataGridViewHorarios.CurrentRow.Cells["IdHorario"].Value;
+
+            // Verificar disponibilidad
+            var horario = _horarioRepo.GetByActividad(0).FirstOrDefault(h => h.IdHorario == idHorario);
+            if (horario == null)
+            {
+                MessageBox.Show("Horario no encontrado.");
+                return;
+            }
+
+            if (horario.PlazasOcupadas < horario.PlazasTotales)
+            {
+                // Crear reserva
+                var nueva = new Reserva
+                {
+                    IdCliente = _cliente.IdUsuario,
+                    IdHorario = horario.IdHorario,
+                    FechaReserva = DateTime.Now,
+                    Estado = "confirmada"
+                };
+                _reservaRepo.Add(nueva);
+
+                horario.PlazasOcupadas++;
+                _horarioRepo.Update(horario);
+
+                MessageBox.Show("✅ Reserva confirmada con éxito.");
+            }
+            else
+            {
+                // Añadir a lista de espera
+                int posicion = _listaRepo.GetByHorario(horario.IdHorario).Count + 1;
+                var nuevaLista = new ListaEspera
+                {
+                    IdCliente = _cliente.IdUsuario,
+                    IdHorario = horario.IdHorario,
+                    Posicion = posicion
+                };
+                _listaRepo.Add(nuevaLista);
+                MessageBox.Show($"⚠️ No hay plazas disponibles. Has sido añadido a la lista de espera (posición {posicion}).");
+            }
+
+            btnVerHorarios_Click(sender, e); // refrescar tabla
+        }
+
+        private void btnVerReservas_Click(object sender, EventArgs e)
+        {
+            var reservas = _reservaRepo.GetByCliente(_cliente.IdUsuario);
+            if (reservas.Count == 0)
+            {
+                MessageBox.Show("No tienes reservas actualmente.");
+                dataGridViewHorarios.DataSource = null;
+                return;
+            }
+
+            dataGridViewHorarios.DataSource = reservas
                 .Select(r => new
                 {
                     r.IdReserva,
                     r.IdHorario,
-                    Fecha = r.FechaReserva.ToString("g"),
-                    r.Estado
-                }).ToList();
-
-            dataGridViewReservas.DataSource = reservas;
+                    r.Estado,
+                    r.FechaReserva
+                })
+                .ToList();
         }
 
-        private void LoadMyWaitings()
-        {
-            var waits = _listaRepo.GetAllByCliente(_currentUser.IdUsuario)
-                .Select(l => new
-                {
-                    l.IdLista,
-                    l.IdHorario,
-                    l.Posicion
-                }).ToList();
-
-            dataGridViewLista.DataSource = waits;
-        }
-
-        // evento: cambio actividad
-        private void cmbActividad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadAvailableHorarios();
-        }
-
-        // evento: cambio fecha en el calendario
-        private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            LoadAvailableHorarios();
-        }
-
-        private void btnMakeReservation_Click(object sender, EventArgs e)
+        private void btnCancelarReserva_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null)
             {
-                MessageBox.Show("Selecciona un horario en la lista (click en la fila).", "Reservar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecciona una reserva para cancelar.");
                 return;
             }
 
-            int idHorario = Convert.ToInt32(dataGridViewHorarios.CurrentRow.Cells["IdHorario"].Value);
-
-            var result = _reservaRepo.TryAddReservation(_currentUser.IdUsuario, idHorario);
-
-            if (result == ReservationResult.Confirmed) MessageBox.Show("Reserva confirmada.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (result == ReservationResult.AddedToWaitingList) MessageBox.Show("Horario lleno. Añadido a la lista de espera.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else if (result == ReservationResult.AlreadyReserved) MessageBox.Show("Ya tienes reserva para este horario.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else MessageBox.Show("No se pudo crear la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            LoadAll();
-        }
-
-        private void btnCancelReservation_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewReservas.CurrentRow == null)
+            if (dataGridViewHorarios.Columns.Contains("IdReserva"))
             {
-                MessageBox.Show("Selecciona una reserva para cancelar.", "Cancelar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                int idReserva = (int)dataGridViewHorarios.CurrentRow.Cells["IdReserva"].Value;
+                _reservaRepo.Cancelar(idReserva);
+                MessageBox.Show("❌ Reserva cancelada correctamente.");
+                btnVerReservas_Click(sender, e);
             }
-
-            int idReserva = Convert.ToInt32(dataGridViewReservas.CurrentRow.Cells["IdReserva"].Value);
-            var ok = _reservaRepo.CancelReservation(idReserva);
-            if (ok) MessageBox.Show("Reserva cancelada.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else MessageBox.Show("No se pudo cancelar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            LoadAll();
-        }
-
-        private void btnEditReservation_Click(object sender, EventArgs e)
-        {
-            // editar: cancelamos la reserva y pedimos que el usuario seleccione otro horario y pulse Reservar
-            if (dataGridViewReservas.CurrentRow == null)
+            else
             {
-                MessageBox.Show("Selecciona una reserva a editar.", "Editar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Por favor, primero abre tus reservas antes de cancelar.");
             }
-
-            int idReserva = Convert.ToInt32(dataGridViewReservas.CurrentRow.Cells["IdReserva"].Value);
-            var confirm = MessageBox.Show("Se cancelará la reserva seleccionada. ¿Continuar para elegir otro horario?", "Editar reserva", MessageBoxButtons.YesNo);
-            if (confirm != DialogResult.Yes) return;
-
-            if (!_reservaRepo.CancelReservation(idReserva))
-            {
-                MessageBox.Show("No se pudo cancelar la reserva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            MessageBox.Show("Reserva cancelada. Selecciona el nuevo horario y pulsa 'Reservar'.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadAll();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-            LoadAll();
-        }
-
-        private void btnLeaveWaiting_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewLista.CurrentRow == null)
-            {
-                MessageBox.Show("Selecciona un elemento de la lista de espera.", "Salir lista", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idLista = Convert.ToInt32(dataGridViewLista.CurrentRow.Cells["IdLista"].Value);
-            _listaRepo.Delete(idLista);
-            _listaRepo.ReorderPositions(Convert.ToInt32(dataGridViewLista.CurrentRow.Cells["IdHorario"].Value));
-            MessageBox.Show("Has salido de la lista de espera.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadAll();
-        }
-
-        private void LoadAll()
-        {
-            LoadAvailableHorarios();
-            LoadMyReservations();
-            LoadMyWaitings();
+            this.Close();
         }
     }
 }

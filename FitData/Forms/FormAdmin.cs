@@ -9,69 +9,84 @@ namespace FitData.Forms
 {
     public partial class FormAdmin : Form
     {
+        private readonly Usuario _currentUser;
         private readonly UsuarioRepository _usuarioRepo;
         private readonly ActividadRepository _actividadRepo;
         private readonly HorarioRepository _horarioRepo;
-        private readonly ListaEsperaRepository _listaRepo;
 
-        public FormAdmin(Usuario currentUser)
+        public FormAdmin(Usuario usuario)
         {
             InitializeComponent();
+            _currentUser = usuario;
 
-            var context = new FitDataContext();
-            _usuarioRepo = new UsuarioRepository(context);
-            _actividadRepo = new ActividadRepository(context);
-            _horarioRepo = new HorarioRepository(context);
-            _listaRepo = new ListaEsperaRepository(context);
+            var ctx = new FitDataContext();
+            _usuarioRepo = new UsuarioRepository(ctx);
+            _actividadRepo = new ActividadRepository(ctx);
+            _horarioRepo = new HorarioRepository(ctx);
 
-            LoadAllData();
+            LoadUsuarios();
+            LoadActividades();
         }
 
-        private void LoadAllData()
+        private void LoadUsuarios()
         {
-            try
+            dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
+            if (dataGridViewUsuarios.Columns["Password"] != null)
+                dataGridViewUsuarios.Columns["Password"].Visible = false;
+        }
+
+        private void LoadActividades()
+        {
+            dataGridViewActividades.DataSource = _actividadRepo.GetAll();
+        }
+
+        private void LoadHorarios(int idActividad)
+        {
+            dataGridViewHorarios.DataSource = _horarioRepo.GetByActividad(idActividad);
+        }
+
+        private void dataGridViewActividades_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewActividades.CurrentRow != null)
             {
-                dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
-                dataGridViewActividades.DataSource = _actividadRepo.GetAll();
-                // Horarios y lista se llenan cuando selecciones actividad/horario si lo implementas en UI
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error cargando datos: " + ex.Message);
+                var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
+                LoadHorarios(act.IdActividad);
             }
         }
 
-        // Usuarios
+        // ------------------ USUARIOS ------------------
+
         private void btnAddUsuario_Click(object sender, EventArgs e)
         {
             var form = new FormUsuario();
             if (form.ShowDialog() == DialogResult.OK)
-                dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
+                LoadUsuarios();
         }
 
         private void btnEditUsuario_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsuarios.CurrentRow == null) return;
-            var usuario = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
-            var form = new FormUsuario(usuario);
+            var user = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
+            var form = new FormUsuario(user);
             if (form.ShowDialog() == DialogResult.OK)
-                dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
+                LoadUsuarios();
         }
 
         private void btnDeleteUsuario_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsuarios.CurrentRow == null) return;
-            var usuario = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
-            _usuarioRepo.Delete(usuario.IdUsuario);
-            dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
+            var user = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
+            _usuarioRepo.Delete(user.IdUsuario);
+            LoadUsuarios();
         }
 
-        // Actividades
+        // ------------------ ACTIVIDADES ------------------
+
         private void btnAddActividad_Click(object sender, EventArgs e)
         {
             var form = new FormActividad(_actividadRepo);
             if (form.ShowDialog() == DialogResult.OK)
-                dataGridViewActividades.DataSource = _actividadRepo.GetAll();
+                LoadActividades();
         }
 
         private void btnEditActividad_Click(object sender, EventArgs e)
@@ -80,7 +95,7 @@ namespace FitData.Forms
             var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
             var form = new FormActividad(_actividadRepo, act);
             if (form.ShowDialog() == DialogResult.OK)
-                dataGridViewActividades.DataSource = _actividadRepo.GetAll();
+                LoadActividades();
         }
 
         private void btnDeleteActividad_Click(object sender, EventArgs e)
@@ -88,53 +103,53 @@ namespace FitData.Forms
             if (dataGridViewActividades.CurrentRow == null) return;
             var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
             _actividadRepo.Delete(act.IdActividad);
-            dataGridViewActividades.DataSource = _actividadRepo.GetAll();
+            LoadActividades();
         }
 
-        // Horarios
+        // ------------------ HORARIOS ------------------
+
         private void btnAddHorario_Click(object sender, EventArgs e)
         {
-            var form = new FormHorario(_horarioRepo, _actividadRepo.GetAll());
-            if (form.ShowDialog() == DialogResult.OK)
+            if (dataGridViewActividades.CurrentRow == null)
             {
-                // opcional: refrescar grilla de horarios según la actividad seleccionada
+                MessageBox.Show("Selecciona una actividad primero.");
+                return;
             }
+
+            var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
+            var form = new FormHorario(_horarioRepo, act);
+            if (form.ShowDialog() == DialogResult.OK)
+                LoadHorarios(act.IdActividad);
         }
 
-        // <-- AQUÍ: handler que faltaba (añádelo)
         private void btnEditHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null) return;
-            var h = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
-            var form = new FormHorario(_horarioRepo, _actividadRepo.GetAll(), h);
+            var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
+            var form = new FormHorario(_horarioRepo, horario);
             if (form.ShowDialog() == DialogResult.OK)
-            {
-                // refrescar si estás mostrando horarios
-                // Ejemplo: dataGridViewHorarios.DataSource = _horarioRepo.GetByActividad(h.IdActividad);
-            }
+                LoadHorarios(horario.IdActividad);
         }
 
         private void btnDeleteHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null) return;
-            var h = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
-            _horarioRepo.Delete(h.IdHorario);
-            // opcional: refrescar
+            var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
+            _horarioRepo.Delete(horario.IdHorario);
+            LoadHorarios(horario.IdActividad);
         }
 
-        // Lista espera
-        private void btnDeleteLista_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewLista.CurrentRow == null) return;
-            var l = (ListaEspera)dataGridViewLista.CurrentRow.DataBoundItem;
-            _listaRepo.Delete(l.IdLista);
-            // refrescar si procede
-        }
+        // ------------------ SALIR ------------------
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
             new LoginForm().Show();
+        }
+    
+    private void btnDeleteLista_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Funcionalidad de eliminar lista aún no implementada.");
         }
     }
 }
