@@ -3,11 +3,11 @@ namespace FitData.Entidades;
 
     public class Horario
 {
-    public int idHorario { get; set; }
-    public int idActividad { get; set; }
-    public string diaSemana { get; set; }
-    public DateTime horaInicio { get; set; }
-    public DateTime horaFin { get; set; }
-    public int plazasTotales { get; set; }
-    public int plazasOcupadas { get; set; }
+    public int IdHorario { get; set; }
+    public int IdActividad { get; set; }
+    public string DiaSemana { get; set; } = "";
+    public DateTime HoraInicio { get; set; }
+    public DateTime HoraFin { get; set; }
+    public int PlazasTotales { get; set; }
+    public int PlazasOcupadas { get; set; }
 }

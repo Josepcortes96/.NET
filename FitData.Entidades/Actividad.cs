@@ -1,12 +1,13 @@
-namespace FitData.Entidades;
-
-    public class Actividad
+namespace FitData.Entidades
 {
-    public int idActividad { get; set; }
-    public string nombre { get; set; }       // e.g., "Zumba"
-    public string descripcion { get; set; }
-    public string nivelIntensidad { get; set; } // e.g., "Bajo", "Medio", "Alto"
-    public string sala { get; set; }         // e.g., "Sala 1"
-    public int idMonitor { get; set; }
-    public string idEncargado { get; set; }
+    public class Actividad
+    {
+        public int IdActividad { get; set; }
+        public string Nombre { get; set; } = "";
+        public string Descripcion { get; set; } = "";
+        public string NivelIntensidad { get; set; } = "";
+        public string Sala { get; set; } = "";
+        public int IdMonitor { get; set; }
+        public int? IdEncargado { get; set; }
+    }
 }

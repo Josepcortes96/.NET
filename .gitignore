@@ -1,0 +1,6 @@
+# Visual Studio / dotnet build outputs
+.vs/
+**/bin/
+**/obj/
+*.dll
+*.pdb
