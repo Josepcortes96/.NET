@@ -42,5 +42,10 @@ namespace FitData.Entidades
         /// Es nullable porque puede que aún no esté asignado.
         /// </summary>
         public int? IdEncargado { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre ?? string.Empty;
+        }
     }
 }

@@ -1,5 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿// FitData/Forms/FormEncargado.cs
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using FitData.Datos;
 using FitData.Datos.Repositorios;
@@ -46,10 +47,13 @@ namespace FitData.Forms
             }
         }
 
+        // ------------------ ACTIVIDADES ------------------
+
         private void btnAddActividad_Click(object sender, EventArgs e)
         {
             var form = new FormActividad(_actividadRepo);
-            if (form.ShowDialog() == DialogResult.OK) LoadActividades();
+            if (form.ShowDialog() == DialogResult.OK)
+                LoadActividades();
         }
 
         private void btnEditActividad_Click(object sender, EventArgs e)
@@ -57,7 +61,8 @@ namespace FitData.Forms
             if (dataGridViewActividades.CurrentRow == null) return;
             var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
             var form = new FormActividad(_actividadRepo, act);
-            if (form.ShowDialog() == DialogResult.OK) LoadActividades();
+            if (form.ShowDialog() == DialogResult.OK)
+                LoadActividades();
         }
 
         private void btnDeleteActividad_Click(object sender, EventArgs e)
@@ -68,20 +73,33 @@ namespace FitData.Forms
             LoadActividades();
         }
 
+        // ------------------ HORARIOS ------------------
+
         private void btnAddHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewActividades.CurrentRow == null) return;
-            var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
-            var form = new FormHorario(_horarioRepo, act);
-            if (form.ShowDialog() == DialogResult.OK) LoadHorarios(act.IdActividad);
+
+            // Pasa todas las actividades al FormHorario
+            List<Actividad> actividades = _actividadRepo.GetAll();
+            var form = new FormHorario(_horarioRepo, actividades);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
+                LoadHorarios(act.IdActividad);
+            }
         }
 
         private void btnEditHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null) return;
+
             var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
-            var form = new FormHorario(_horarioRepo, horario);
-            if (form.ShowDialog() == DialogResult.OK) LoadHorarios(horario.IdActividad);
+            List<Actividad> actividades = _actividadRepo.GetAll();
+
+            var form = new FormHorario(_horarioRepo, actividades, horario);
+            if (form.ShowDialog() == DialogResult.OK)
+                LoadHorarios(horario.IdActividad);
         }
 
         private void btnDeleteHorario_Click(object sender, EventArgs e)
@@ -91,6 +109,8 @@ namespace FitData.Forms
             _horarioRepo.Delete(horario.IdHorario);
             LoadHorarios(horario.IdActividad);
         }
+
+        // ------------------ SALIR ------------------
 
         private void btnLogout_Click(object sender, EventArgs e)
         {

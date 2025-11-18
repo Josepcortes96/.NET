@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using FitData.Datos;
 using FitData.Datos.Repositorios;
 using FitData.Entidades;
+using System.Collections.Generic;
 
 namespace FitData.Forms
 {
@@ -116,17 +117,25 @@ namespace FitData.Forms
                 return;
             }
 
-            var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
-            var form = new FormHorario(_horarioRepo, act);
+            // Pasa todas las actividades al constructor
+            List<Actividad> actividades = _actividadRepo.GetAll();
+            var form = new FormHorario(_horarioRepo, actividades);
+
             if (form.ShowDialog() == DialogResult.OK)
+            {
+                var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
                 LoadHorarios(act.IdActividad);
+            }
         }
 
         private void btnEditHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null) return;
+
             var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
-            var form = new FormHorario(_horarioRepo, horario);
+            List<Actividad> actividades = _actividadRepo.GetAll();
+
+            var form = new FormHorario(_horarioRepo, actividades, horario);
             if (form.ShowDialog() == DialogResult.OK)
                 LoadHorarios(horario.IdActividad);
         }
@@ -146,8 +155,8 @@ namespace FitData.Forms
             this.Close();
             new LoginForm().Show();
         }
-    
-    private void btnDeleteLista_Click(object sender, EventArgs e)
+
+        private void btnDeleteLista_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Funcionalidad de eliminar lista aún no implementada.");
         }

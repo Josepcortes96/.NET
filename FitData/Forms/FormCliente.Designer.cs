@@ -23,7 +23,9 @@
         {
             if (disposing && (components != null))
             {
+                _ctx?.Dispose();
                 components.Dispose();
+
             }
             base.Dispose(disposing);
         }

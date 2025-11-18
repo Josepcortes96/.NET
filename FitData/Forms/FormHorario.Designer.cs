@@ -1,150 +1,118 @@
-﻿namespace FitData.Forms
+﻿// FitData/Forms/FormHorario.Designer.cs
+namespace FitData.Forms
 {
     partial class FormHorario
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        private System.Windows.Forms.Label lblActividad;
-        private System.Windows.Forms.Label lblDiaSemana;
-        private System.Windows.Forms.Label lblHoraInicio;
-        private System.Windows.Forms.Label lblHoraFin;
-        private System.Windows.Forms.Label lblSala;
-        private System.Windows.Forms.Label lblPlazasTotales;
-        private System.Windows.Forms.Label lblPlazasOcupadas;
+        private System.Windows.Forms.ComboBox cmbActividad;
         private System.Windows.Forms.TextBox txtDiaSemana;
-        private System.Windows.Forms.TextBox txtSala;
         private System.Windows.Forms.DateTimePicker dtpHoraInicio;
         private System.Windows.Forms.DateTimePicker dtpHoraFin;
-        private System.Windows.Forms.NumericUpDown numPlazasTotales;
-        private System.Windows.Forms.NumericUpDown numPlazasOcupadas;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.NumericUpDown nudPlazas;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblActividad;
+        private System.Windows.Forms.Label lblDia;
+        private System.Windows.Forms.Label lblInicio;
+        private System.Windows.Forms.Label lblFin;
+        private System.Windows.Forms.Label lblPlazas;
+        private System.Windows.Forms.TextBox txtSala;
+        private System.Windows.Forms.Label lblSala;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            this.lblActividad = new System.Windows.Forms.Label();
-            this.lblDiaSemana = new System.Windows.Forms.Label();
-            this.lblHoraInicio = new System.Windows.Forms.Label();
-            this.lblHoraFin = new System.Windows.Forms.Label();
-            this.lblSala = new System.Windows.Forms.Label();
-            this.lblPlazasTotales = new System.Windows.Forms.Label();
-            this.lblPlazasOcupadas = new System.Windows.Forms.Label();
+            this.cmbActividad = new System.Windows.Forms.ComboBox();
             this.txtDiaSemana = new System.Windows.Forms.TextBox();
-            this.txtSala = new System.Windows.Forms.TextBox();
             this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.numPlazasTotales = new System.Windows.Forms.NumericUpDown();
-            this.numPlazasOcupadas = new System.Windows.Forms.NumericUpDown();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.numPlazasTotales)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPlazasOcupadas)).BeginInit();
-
+            this.nudPlazas = new System.Windows.Forms.NumericUpDown();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.lblActividad = new System.Windows.Forms.Label();
+            this.lblDia = new System.Windows.Forms.Label();
+            this.lblInicio = new System.Windows.Forms.Label();
+            this.lblFin = new System.Windows.Forms.Label();
+            this.lblPlazas = new System.Windows.Forms.Label();
+            this.txtSala = new System.Windows.Forms.TextBox();
+            this.lblSala = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).BeginInit();
             this.SuspendLayout();
-
             // lblActividad
-            this.lblActividad.AutoSize = true;
-            this.lblActividad.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblActividad.Location = new System.Drawing.Point(20, 20);
+            this.lblActividad.Location = new System.Drawing.Point(12, 15);
+            this.lblActividad.Size = new System.Drawing.Size(80, 23);
             this.lblActividad.Text = "Actividad:";
-
-            // Día de la semana
-            this.lblDiaSemana.AutoSize = true;
-            this.lblDiaSemana.Location = new System.Drawing.Point(20, 60);
-            this.lblDiaSemana.Text = "Día de la semana:";
-            this.txtDiaSemana.Location = new System.Drawing.Point(180, 57);
-            this.txtDiaSemana.Width = 150;
-
-            // Hora inicio
-            this.lblHoraInicio.AutoSize = true;
-            this.lblHoraInicio.Location = new System.Drawing.Point(20, 100);
-            this.lblHoraInicio.Text = "Hora inicio:";
+            this.cmbActividad.Location = new System.Drawing.Point(100, 12);
+            this.cmbActividad.Size = new System.Drawing.Size(260, 23);
+            // lblDia
+            this.lblDia.Location = new System.Drawing.Point(12, 50);
+            this.lblDia.Size = new System.Drawing.Size(80, 23);
+            this.lblDia.Text = "Día semana:";
+            this.txtDiaSemana.Location = new System.Drawing.Point(100, 47);
+            this.txtDiaSemana.Size = new System.Drawing.Size(260, 23);
+            // lblInicio
+            this.lblInicio.Location = new System.Drawing.Point(12, 85);
+            this.lblInicio.Size = new System.Drawing.Size(80, 23);
+            this.lblInicio.Text = "Hora inicio:";
+            this.dtpHoraInicio.Location = new System.Drawing.Point(100, 82);
             this.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraInicio.ShowUpDown = true;
-            this.dtpHoraInicio.Location = new System.Drawing.Point(180, 97);
-
-            // Hora fin
-            this.lblHoraFin.AutoSize = true;
-            this.lblHoraFin.Location = new System.Drawing.Point(20, 140);
-            this.lblHoraFin.Text = "Hora fin:";
+            // lblFin
+            this.lblFin.Location = new System.Drawing.Point(12, 120);
+            this.lblFin.Size = new System.Drawing.Size(80, 23);
+            this.lblFin.Text = "Hora fin:";
+            this.dtpHoraFin.Location = new System.Drawing.Point(100, 117);
             this.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraFin.ShowUpDown = true;
-            this.dtpHoraFin.Location = new System.Drawing.Point(180, 137);
-
-            // Sala
-            this.lblSala.AutoSize = true;
-            this.lblSala.Location = new System.Drawing.Point(20, 180);
+            // lblSala
+            this.lblSala.Location = new System.Drawing.Point(12, 155);
+            this.lblSala.Size = new System.Drawing.Size(80, 23);
             this.lblSala.Text = "Sala:";
-            this.txtSala.Location = new System.Drawing.Point(180, 177);
-            this.txtSala.Width = 150;
-
-            // Plazas totales
-            this.lblPlazasTotales.AutoSize = true;
-            this.lblPlazasTotales.Location = new System.Drawing.Point(20, 220);
-            this.lblPlazasTotales.Text = "Plazas totales:";
-            this.numPlazasTotales.Location = new System.Drawing.Point(180, 217);
-            this.numPlazasTotales.Maximum = 100;
-
-            // Plazas ocupadas
-            this.lblPlazasOcupadas.AutoSize = true;
-            this.lblPlazasOcupadas.Location = new System.Drawing.Point(20, 260);
-            this.lblPlazasOcupadas.Text = "Plazas ocupadas:";
-            this.numPlazasOcupadas.Location = new System.Drawing.Point(180, 257);
-            this.numPlazasOcupadas.Maximum = 100;
-
-            // Botones
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Location = new System.Drawing.Point(60, 310);
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Location = new System.Drawing.Point(200, 310);
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-
+            this.txtSala.Location = new System.Drawing.Point(100, 152);
+            this.txtSala.Size = new System.Drawing.Size(260, 23);
+            // lblPlazas
+            this.lblPlazas.Location = new System.Drawing.Point(12, 190);
+            this.lblPlazas.Size = new System.Drawing.Size(80, 23);
+            this.lblPlazas.Text = "Plazas:";
+            this.nudPlazas.Location = new System.Drawing.Point(100, 187);
+            this.nudPlazas.Minimum = 1;
+            this.nudPlazas.Maximum = 100;
+            this.nudPlazas.Value = 16;
+            // btnSave
+            this.btnSave.Location = new System.Drawing.Point(100, 230);
+            this.btnSave.Size = new System.Drawing.Size(90, 30);
+            this.btnSave.Text = "Guardar";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // btnCancel
+            this.btnCancel.Location = new System.Drawing.Point(210, 230);
+            this.btnCancel.Size = new System.Drawing.Size(90, 30);
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // FormHorario
-            this.ClientSize = new System.Drawing.Size(380, 370);
+            this.ClientSize = new System.Drawing.Size(380, 280);
             this.Controls.Add(this.lblActividad);
-            this.Controls.Add(this.lblDiaSemana);
+            this.Controls.Add(this.cmbActividad);
+            this.Controls.Add(this.lblDia);
             this.Controls.Add(this.txtDiaSemana);
-            this.Controls.Add(this.lblHoraInicio);
+            this.Controls.Add(this.lblInicio);
             this.Controls.Add(this.dtpHoraInicio);
-            this.Controls.Add(this.lblHoraFin);
+            this.Controls.Add(this.lblFin);
             this.Controls.Add(this.dtpHoraFin);
             this.Controls.Add(this.lblSala);
             this.Controls.Add(this.txtSala);
-            this.Controls.Add(this.lblPlazasTotales);
-            this.Controls.Add(this.numPlazasTotales);
-            this.Controls.Add(this.lblPlazasOcupadas);
-            this.Controls.Add(this.numPlazasOcupadas);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnCancelar);
-            this.Name = "FormHorario";
-            this.Text = "Gestión de horarios";
-
-            ((System.ComponentModel.ISupportInitialize)(this.numPlazasTotales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPlazasOcupadas)).EndInit();
+            this.Controls.Add(this.lblPlazas);
+            this.Controls.Add(this.nudPlazas);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
+            this.Text = "Horario";
+            ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
-        #endregion
     }
 }
