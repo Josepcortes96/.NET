@@ -20,6 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FitData\FitData.csproj" />
     <ProjectReference Include="..\FitData.Datos\FitData.Datos.csproj" />
+    <ProjectReference Include="..\FitData.Entidades\FitData.Entidades.csproj" />
   </ItemGroup>
 
 </Project>
