@@ -2,7 +2,7 @@ using FitData.Datos;
 using FitData.Datos.Repositorios;
 using FitData.Entidades;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Linq;
 using Xunit;
 
@@ -12,6 +12,7 @@ public class ActividadRepositoryTests
     {
         var options = new DbContextOptionsBuilder<FitDataContext>()
             .UseInMemoryDatabase(databaseName: dbName)
+            .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
 
         return new FitDataContext(options);
