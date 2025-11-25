@@ -1,0 +1,16 @@
+# .NET / VisualStudio
+bin/
+obj/
+*.user
+*.suo
+*.pdb
+*.dll
+.vs/
+*.nupkg
+*.cache
+*.log
+*.ide
+*.vsconfig
+# Rider/IDE files
+.idea/
+.vscode/
