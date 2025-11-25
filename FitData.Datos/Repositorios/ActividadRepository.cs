@@ -26,6 +26,14 @@ namespace FitData.Datos.Repositorios
                            .ToList();
         }
 
+        public List<Actividad> GetByMonitor(int idMonitor)
+        {
+            return _context.Actividades
+                .Where(a => a.IdMonitor == idMonitor)
+                .ToList();
+        }
+
+
         public void Add(Actividad a)
         {
             _context.Actividades.Add(a);

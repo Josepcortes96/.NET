@@ -65,7 +65,6 @@ namespace FitData.Forms
             {
                 Usuario.Password = plainPassword;
             }
-            // si es edición y el campo contraseña quedó vacío, dejamos la contraseña existente intacta
 
             var context = new FitDataContext();
             var repo = new UsuarioRepository(context);

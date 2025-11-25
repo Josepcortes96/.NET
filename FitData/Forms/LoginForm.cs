@@ -90,6 +90,9 @@ namespace FitData.Forms
                 case "recepcionista":
                     new FormRecepcionista(usuario).Show();
                     break;
+                case "monitor":
+                    new FormMonitor(usuario).Show();  // <-- TU FORM DE MONITOR
+                    break;
                 default:
                     MessageBox.Show("Rol desconocido.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Show();

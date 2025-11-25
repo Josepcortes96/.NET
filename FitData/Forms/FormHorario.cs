@@ -99,7 +99,7 @@ namespace FitData.Forms
                     HoraFin = dtpHoraFin.Value.TimeOfDay,
                     PlazasTotales = (int)nudPlazas.Value,
                     PlazasOcupadas = 0,
-                    Sala = txtSala.Text.Trim()
+
                 };
                 _horarioRepo.Add(h);
                 MessageBox.Show("Horario creado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -112,7 +112,6 @@ namespace FitData.Forms
                 _horario.HoraInicio = dtpHoraInicio.Value.TimeOfDay;
                 _horario.HoraFin = dtpHoraFin.Value.TimeOfDay;
                 _horario.PlazasTotales = (int)nudPlazas.Value;
-                _horario.Sala = txtSala.Text.Trim();
                 _horarioRepo.Update(_horario);
                 MessageBox.Show("Horario actualizado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
