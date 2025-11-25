@@ -2,8 +2,8 @@ namespace FitData.Entidades;
 
     public class ListaEspera
 {
-    public int idLista { get; set; }
-    public int idCliente { get; set; }
-    public int idHorario { get; set; }
-    public int posicion { get; set; }  // 1 = primero en la lista
+    public int IdLista { get; set; }
+    public int IdCliente { get; set; }
+    public int IdHorario { get; set; }
+    public int Posicion { get; set; }  // 1 = primero en la lista
 }

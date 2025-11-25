@@ -1,12 +1,51 @@
-namespace FitData.Entidades;
-
-    public class Actividad
+namespace FitData.Entidades
 {
-    public int idActividad { get; set; }
-    public string nombre { get; set; }       // e.g., "Zumba"
-    public string descripcion { get; set; }
-    public string nivelIntensidad { get; set; } // e.g., "Bajo", "Medio", "Alto"
-    public string sala { get; set; }         // e.g., "Sala 1"
-    public int idMonitor { get; set; }
-    public string idEncargado { get; set; }
+    /// <summary>
+    /// Representa una actividad disponible en GenteFit.
+    /// </summary>
+    public class Actividad
+    {
+        /// <summary>
+        /// Identificador único de la actividad.
+        /// </summary>
+        public int IdActividad { get; set; }
+
+        /// <summary>
+        /// Nombre de la actividad (por ejemplo: Zumba, Yoga, Spinning...).
+        /// </summary>
+        public string Nombre { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Descripción de la actividad.
+        /// </summary>
+        public string Descripcion { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Nivel de intensidad de la actividad (Baja, Media, Alta...).
+        /// </summary>
+        public string NivelIntensidad { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Sala o ubicación donde se imparte la actividad (por ejemplo: Sala 1, Sala 2...).
+        /// </summary>
+        public string Sala { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Identificador del monitor responsable de impartir la actividad.
+        /// Clave foránea hacia la tabla Monitores.
+        /// </summary>
+        public int IdMonitor { get; set; }
+
+        /// <summary>
+        /// Identificador del encargado que gestiona esta actividad.
+        /// Clave foránea hacia la tabla Encargado.
+        /// Es nullable porque puede que aún no esté asignado.
+        /// </summary>
+        public int? IdEncargado { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre ?? string.Empty;
+        }
+    }
 }

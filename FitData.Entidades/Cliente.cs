@@ -1,6 +1,20 @@
-namespace FitData.Entidades;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Cliente : Usuario
+namespace FitData.Entidades
 {
-    public int IdUsuario { get; set; }
+    public class Cliente
+    {
+        [Key]
+        [ForeignKey("Usuario")]
+        public int IdUsuario { get; set; }
+
+        // navegación hacia Usuario
+        public Usuario Usuario { get; set; }
+    }
 }

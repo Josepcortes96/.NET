@@ -3,9 +3,9 @@ namespace FitData.Entidades;
 
     public class Reserva
 {
-    public int idReserva { get; set; }
-    public int idCliente { get; set; }
-    public int idHorario { get; set; }
-    public DateTime fechaReserva { get; set; }
-    public string estado { get; set; } // "confirmada" o "cancelada"
+    public int IdReserva { get; set; }
+    public int IdCliente { get; set; }
+    public int IdHorario { get; set; }
+    public DateTime FechaReserva { get; set; }
+    public string Estado { get; set; } = ""; // e.g. "confirmada", "cancelada"
 }
