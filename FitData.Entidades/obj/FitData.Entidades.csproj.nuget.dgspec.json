@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {}
+    "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+    "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+        "projectUniqueName": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
         "projectName": "FitData.Entidades",
-        "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+        "projectPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
         "packagesPath": "C:\\Users\\jcortes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\obj\\",
+        "outputPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jcortes\\AppData\\Roaming\\NuGet\\NuGet.Config"

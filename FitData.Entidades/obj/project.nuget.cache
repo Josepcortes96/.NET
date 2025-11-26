@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R/6j15w5AE4=",
+  "dgSpecHash": "5+YZF3b9UZY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+  "projectFilePath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jcortes\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\jcortes\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
