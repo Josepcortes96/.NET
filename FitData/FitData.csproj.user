@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Forms\FormActividad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormEncargado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormHorario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormRecepcionista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\FormUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
