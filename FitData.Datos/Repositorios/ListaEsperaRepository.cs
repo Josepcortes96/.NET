@@ -22,7 +22,7 @@ namespace FitData.Datos.Repositorios
                 .ToList();
         }
 
-        // Añadir verificando duplicados + posicion correcta
+
         public void Add(ListaEspera l)
         {
             //  Evitar duplicados
