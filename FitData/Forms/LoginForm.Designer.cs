@@ -103,7 +103,7 @@
             // ==== BOTÓN REGISTER  ====
             this.btnRegister.Location = new System.Drawing.Point(260, 260);
             this.btnRegister.Size = new System.Drawing.Size(100, 40);
-            this.btnRegister.Text = "Registrarse";
+            this.btnRegister.Text = "Registrar";
             this.btnRegister.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
             this.btnRegister.ForeColor = System.Drawing.Color.White;
             this.btnRegister.BorderRadius = 18;
