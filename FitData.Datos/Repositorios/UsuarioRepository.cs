@@ -15,11 +15,43 @@ namespace FitData.Datos.Repositorios
             _context = context;
         }
 
-        // CREATE
+                // CREATE
         public void Add(Usuario usuario)
         {
+            // Insert en Usuario
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
+
+            switch (usuario.Rol?.ToLowerInvariant())
+            {
+                case "cliente":
+                    _context.Clientes.Add(new Cliente { IdUsuario = usuario.IdUsuario });
+                    break;
+
+                case "monitor":
+                    _context.Monitores.Add(new MonitorUsuario { IdUsuario = usuario.IdUsuario });
+                    break;
+
+                case "encargado":
+                    _context.Encargados.Add(new Encargado { IdUsuario = usuario.IdUsuario });
+                    break;
+
+                case "administrador":
+                    _context.Administradores.Add(new Administrador { IdUsuario = usuario.IdUsuario });
+                    break;
+
+                case "recepcionista":
+                    _context.Recepcionistas.Add(new Recepcionista { IdUsuario = usuario.IdUsuario });
+                    break;
+            }
+
+            _context.SaveChanges();
+        }
+
+        // READ BY ID
+        public Usuario? GetById(int id)
+        {
+            return _context.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
         }
 
         // READ ALL

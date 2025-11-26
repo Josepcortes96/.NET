@@ -1,118 +1,186 @@
-﻿// FitData/Forms/FormHorario.Designer.cs
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace FitData.Forms
 {
     partial class FormHorario
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.ComboBox cmbActividad;
-        private System.Windows.Forms.TextBox txtDiaSemana;
-        private System.Windows.Forms.DateTimePicker dtpHoraInicio;
-        private System.Windows.Forms.DateTimePicker dtpHoraFin;
-        private System.Windows.Forms.NumericUpDown nudPlazas;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label lblActividad;
-        private System.Windows.Forms.Label lblDia;
-        private System.Windows.Forms.Label lblInicio;
-        private System.Windows.Forms.Label lblFin;
-        private System.Windows.Forms.Label lblPlazas;
-        private System.Windows.Forms.TextBox txtSala;
-        private System.Windows.Forms.Label lblSala;
+
+        private Label lblActividad, lblDia, lblInicio, lblFin, lblPlazas;
+        private ComboBox cmbActividad;
+        private TextBox txtDiaSemana;
+        private DateTimePicker dtpHoraInicio, dtpHoraFin;
+        private NumericUpDown nudPlazas;
+        private FitData.Controls.BotonRedondeado btnSave, btnCancel;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null)) components.Dispose();
+            if (disposing && components != null)
+                components.Dispose();
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.cmbActividad = new System.Windows.Forms.ComboBox();
-            this.txtDiaSemana = new System.Windows.Forms.TextBox();
-            this.dtpHoraInicio = new System.Windows.Forms.DateTimePicker();
-            this.dtpHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.nudPlazas = new System.Windows.Forms.NumericUpDown();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.lblActividad = new System.Windows.Forms.Label();
-            this.lblDia = new System.Windows.Forms.Label();
-            this.lblInicio = new System.Windows.Forms.Label();
-            this.lblFin = new System.Windows.Forms.Label();
-            this.lblPlazas = new System.Windows.Forms.Label();
-            this.txtSala = new System.Windows.Forms.TextBox();
-            this.lblSala = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).BeginInit();
             this.SuspendLayout();
-            // lblActividad
-            this.lblActividad.Location = new System.Drawing.Point(12, 15);
-            this.lblActividad.Size = new System.Drawing.Size(80, 23);
-            this.lblActividad.Text = "Actividad:";
-            this.cmbActividad.Location = new System.Drawing.Point(100, 12);
-            this.cmbActividad.Size = new System.Drawing.Size(260, 23);
-            // lblDia
-            this.lblDia.Location = new System.Drawing.Point(12, 50);
-            this.lblDia.Size = new System.Drawing.Size(80, 23);
-            this.lblDia.Text = "Día semana:";
-            this.txtDiaSemana.Location = new System.Drawing.Point(100, 47);
-            this.txtDiaSemana.Size = new System.Drawing.Size(260, 23);
-            // lblInicio
-            this.lblInicio.Location = new System.Drawing.Point(12, 85);
-            this.lblInicio.Size = new System.Drawing.Size(80, 23);
-            this.lblInicio.Text = "Hora inicio:";
-            this.dtpHoraInicio.Location = new System.Drawing.Point(100, 82);
-            this.dtpHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHoraInicio.ShowUpDown = true;
-            // lblFin
-            this.lblFin.Location = new System.Drawing.Point(12, 120);
-            this.lblFin.Size = new System.Drawing.Size(80, 23);
-            this.lblFin.Text = "Hora fin:";
-            this.dtpHoraFin.Location = new System.Drawing.Point(100, 117);
-            this.dtpHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpHoraFin.ShowUpDown = true;
-            // lblSala
-            this.lblSala.Location = new System.Drawing.Point(12, 155);
-            this.lblSala.Size = new System.Drawing.Size(80, 23);
-            this.lblSala.Text = "Sala:";
-            this.txtSala.Location = new System.Drawing.Point(100, 152);
-            this.txtSala.Size = new System.Drawing.Size(260, 23);
-            // lblPlazas
-            this.lblPlazas.Location = new System.Drawing.Point(12, 190);
-            this.lblPlazas.Size = new System.Drawing.Size(80, 23);
-            this.lblPlazas.Text = "Plazas:";
-            this.nudPlazas.Location = new System.Drawing.Point(100, 187);
-            this.nudPlazas.Minimum = 1;
-            this.nudPlazas.Maximum = 100;
-            this.nudPlazas.Value = 16;
-            // btnSave
-            this.btnSave.Location = new System.Drawing.Point(100, 230);
-            this.btnSave.Size = new System.Drawing.Size(90, 30);
-            this.btnSave.Text = "Guardar";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // btnCancel
-            this.btnCancel.Location = new System.Drawing.Point(210, 230);
-            this.btnCancel.Size = new System.Drawing.Size(90, 30);
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // FormHorario
-            this.ClientSize = new System.Drawing.Size(380, 280);
-            this.Controls.Add(this.lblActividad);
-            this.Controls.Add(this.cmbActividad);
-            this.Controls.Add(this.lblDia);
-            this.Controls.Add(this.txtDiaSemana);
-            this.Controls.Add(this.lblInicio);
-            this.Controls.Add(this.dtpHoraInicio);
-            this.Controls.Add(this.lblFin);
-            this.Controls.Add(this.dtpHoraFin);
-            this.Controls.Add(this.lblSala);
-            this.Controls.Add(this.txtSala);
-            this.Controls.Add(this.lblPlazas);
-            this.Controls.Add(this.nudPlazas);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
-            this.Text = "Horario";
-            ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).EndInit();
+
+            // ==== FORM ====
+            this.BackColor = Color.FromArgb(85, 85, 84);
+            this.ClientSize = new Size(520, 500);
+            this.Font = new Font("Segoe UI", 11F);
+            this.ForeColor = Color.White;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Gestión de Horario";
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+
+            // ==== LOGO ARRIBA DERECHA ====
+            PictureBox picLogoSmall = new PictureBox();
+            picLogoSmall.Image = Image.FromFile(
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "public", "FitData.jpg")
+            );
+            picLogoSmall.Size = new Size(60, 60);
+            picLogoSmall.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogoSmall.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picLogoSmall.Location = new Point(this.ClientSize.Width - 75, 10);
+            this.Controls.Add(picLogoSmall);
+
+            this.Resize += (s, e) =>
+            {
+                picLogoSmall.Location = new Point(this.ClientSize.Width - 75, 10);
+            };
+
+            // ========== PANEL SCROLLABLE ==========
+            Panel scrollPanel = new Panel();
+            scrollPanel.Dock = DockStyle.Fill;
+            scrollPanel.AutoScroll = true;
+            scrollPanel.Padding = new Padding(30, 90, 30, 20);
+            this.Controls.Add(scrollPanel);
+
+            // ========== TABLA PRINCIPAL ==========
+            TableLayoutPanel layout = new TableLayoutPanel();
+            layout.ColumnCount = 2;
+            layout.Dock = DockStyle.Top;
+            layout.AutoSize = true;
+
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+
+            // ==== CAMPOS ====
+            lblActividad = new Label() { Text = "Actividad:", AutoSize = true };
+            cmbActividad = new ComboBox()
+            {
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Width = 250
+            };
+
+            lblDia = new Label() { Text = "Día semana:", AutoSize = true };
+            txtDiaSemana = CreateTextBox();
+
+            lblInicio = new Label() { Text = "Hora inicio:", AutoSize = true };
+            dtpHoraInicio = new DateTimePicker()
+            {
+                Format = DateTimePickerFormat.Time,
+                ShowUpDown = true,
+                Width = 150,
+                BackColor = Color.FromArgb(50, 50, 50)
+            };
+
+            lblFin = new Label() { Text = "Hora fin:", AutoSize = true };
+            dtpHoraFin = new DateTimePicker()
+            {
+                Format = DateTimePickerFormat.Time,
+                ShowUpDown = true,
+                Width = 150,
+                BackColor = Color.FromArgb(50, 50, 50)
+            };
+
+            lblPlazas = new Label() { Text = "Plazas totales:", AutoSize = true };
+            nudPlazas = new NumericUpDown()
+            {
+                Minimum = 1,
+                Maximum = 100,
+                Value = 16,
+                Width = 150,
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White
+            };
+
+            // Añadir filas al layout
+            AddRow(layout, lblActividad, cmbActividad);
+            AddRow(layout, lblDia, txtDiaSemana);
+            AddRow(layout, lblInicio, dtpHoraInicio);
+            AddRow(layout, lblFin, dtpHoraFin);
+            AddRow(layout, lblPlazas, nudPlazas);
+
+            scrollPanel.Controls.Add(layout);
+
+            // ==== BOTONES ====
+            btnSave = CreateButton("Guardar", Color.FromArgb(0, 120, 215));
+            btnSave.Click += btnSave_Click;
+
+            btnCancel = CreateButton("Cancelar", Color.FromArgb(60, 60, 60));
+            btnCancel.Click += btnCancel_Click;
+
+            TableLayoutPanel buttonLayout = new TableLayoutPanel();
+            buttonLayout.Dock = DockStyle.Bottom;
+            buttonLayout.Height = 80;
+            buttonLayout.ColumnCount = 2;
+            buttonLayout.Padding = new Padding(40, 10, 40, 10);
+
+            buttonLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+            buttonLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
+            buttonLayout.Controls.Add(btnSave, 0, 0);
+            buttonLayout.Controls.Add(btnCancel, 1, 0);
+
+            this.Controls.Add(buttonLayout);
+
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        // === Helpers ===
+        private TextBox CreateTextBox()
+        {
+            return new TextBox()
+            {
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                Width = 250,
+                Height = 28
+            };
+        }
+
+        private FitData.Controls.BotonRedondeado CreateButton(string text, Color backColor)
+        {
+            return new FitData.Controls.BotonRedondeado()
+            {
+                Text = text,
+                BorderRadius = 18,
+                BorderSize = 3,
+                BorderColor = Color.White,
+                BackColor = backColor,
+                ForeColor = Color.White,
+                Size = new Size(150, 48),
+                Margin = new Padding(20)
+            };
+        }
+
+        private void AddRow(TableLayoutPanel layout, Control lbl, Control ctrl)
+        {
+            int row = layout.RowCount;
+
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
+            layout.Controls.Add(lbl, 0, row);
+            layout.Controls.Add(ctrl, 1, row);
+
+            layout.RowCount++;
         }
     }
 }

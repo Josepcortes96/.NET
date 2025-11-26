@@ -11,6 +11,6 @@ namespace FitData.Entidades
         public TimeSpan HoraFin { get; set; }        
         public int PlazasTotales { get; set; }
         public int PlazasOcupadas { get; set; }
-        public string Sala { get; set; } = "";
+
     }
 }

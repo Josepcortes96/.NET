@@ -1,6 +1,15 @@
-namespace FitData.Entidades;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-    public class Administrador : Usuario
+
+namespace FitData.Entidades
 {
-    
+    public class Administrador
+    {
+        [Key]
+        [ForeignKey("Usuario")]
+        public int IdUsuario { get; set; }
+
+        public Usuario Usuario { get; set; }
+    }
 }

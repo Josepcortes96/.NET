@@ -71,7 +71,7 @@ namespace FitData.Forms
                     HoraFin = h.HoraFin.ToString(@"hh\:mm"),
                     h.PlazasTotales,
                     h.PlazasOcupadas,
-                    h.Sala
+
                 })
                 .ToList();
         }
@@ -240,6 +240,27 @@ namespace FitData.Forms
                 throw;
             }
         }
+private void btnVerListaEspera_Click(object sender, EventArgs e)
+{
+    var lista = _listaRepo.GetAllByCliente(_cliente.IdUsuario);
+
+    if (lista.Count == 0)
+    {
+        MessageBox.Show("No estás en ninguna lista de espera.");
+        dataGridViewListaEspera.DataSource = null;
+        return;
+    }
+
+    var datos = lista.Select(l => new
+    {
+        l.IdLista,
+        l.IdHorario,
+        l.Posicion
+    }).ToList();
+
+    dataGridViewListaEspera.DataSource = datos;
+}
+
 
 
         private void btnVerReservas_Click(object sender, EventArgs e)

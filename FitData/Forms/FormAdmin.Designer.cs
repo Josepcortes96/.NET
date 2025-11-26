@@ -1,171 +1,244 @@
-﻿namespace FitData.Forms
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace FitData.Forms
 {
     partial class FormAdmin
     {
         private System.ComponentModel.IContainer components = null;
 
+        private PictureBox picLogo;
+        private TabControl tabControlAdmin;
+
+        private TabPage tabUsuarios;
+        private DataGridView dataGridViewUsuarios;
+        private FitData.Controls.BotonRedondeado btnAddUsuario;
+        private FitData.Controls.BotonRedondeado btnEditUsuario;
+        private FitData.Controls.BotonRedondeado btnDeleteUsuario;
+
+        private TabPage tabActividades;
+        private DataGridView dataGridViewActividades;
+        private FitData.Controls.BotonRedondeado btnAddActividad;
+        private FitData.Controls.BotonRedondeado btnEditActividad;
+        private FitData.Controls.BotonRedondeado btnDeleteActividad;
+
+        private TabPage tabHorarios;
+        private DataGridView dataGridViewHorarios;
+        private FitData.Controls.BotonRedondeado btnAddHorario;
+        private FitData.Controls.BotonRedondeado btnEditHorario;
+        private FitData.Controls.BotonRedondeado btnDeleteHorario;
+
+        private TabPage tabLista;
+        private DataGridView dataGridViewLista;
+        private FitData.Controls.BotonRedondeado btnDeleteLista;
+
+        private FitData.Controls.BotonRedondeado btnLogout;
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && components != null)
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.tabControlAdmin = new System.Windows.Forms.TabControl();
-            this.tabUsuarios = new System.Windows.Forms.TabPage();
-            this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnAddUsuario = new System.Windows.Forms.Button();
-            this.btnEditUsuario = new System.Windows.Forms.Button();
-            this.btnDeleteUsuario = new System.Windows.Forms.Button();
-            this.tabActividades = new System.Windows.Forms.TabPage();
-            this.dataGridViewActividades = new System.Windows.Forms.DataGridView();
-            this.btnAddActividad = new System.Windows.Forms.Button();
-            this.btnEditActividad = new System.Windows.Forms.Button();
-            this.btnDeleteActividad = new System.Windows.Forms.Button();
-            this.tabHorarios = new System.Windows.Forms.TabPage();
-            this.dataGridViewHorarios = new System.Windows.Forms.DataGridView();
-            this.btnAddHorario = new System.Windows.Forms.Button();
-            this.btnEditHorario = new System.Windows.Forms.Button();
-            this.btnDeleteHorario = new System.Windows.Forms.Button();
-            this.tabLista = new System.Windows.Forms.TabPage();
-            this.dataGridViewLista = new System.Windows.Forms.DataGridView();
-            this.btnDeleteLista = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
 
-            // TabControl
-            this.tabControlAdmin.Controls.Add(this.tabUsuarios);
-            this.tabControlAdmin.Controls.Add(this.tabActividades);
-            this.tabControlAdmin.Controls.Add(this.tabHorarios);
-            this.tabControlAdmin.Controls.Add(this.tabLista);
-            this.tabControlAdmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControlAdmin.SelectedIndex = 0;
-            this.tabControlAdmin.Height = 400;
-
-            // Usuarios Tab
-            this.tabUsuarios.Controls.Add(this.dataGridViewUsuarios);
-            this.tabUsuarios.Controls.Add(this.btnAddUsuario);
-            this.tabUsuarios.Controls.Add(this.btnEditUsuario);
-            this.tabUsuarios.Controls.Add(this.btnDeleteUsuario);
-
-            this.dataGridViewUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewUsuarios.Height = 250;
-
-            this.btnAddUsuario.Text = "Añadir";
-            this.btnAddUsuario.Top = 260;
-            this.btnAddUsuario.Left = 10;
-            this.btnAddUsuario.Click += new System.EventHandler(this.btnAddUsuario_Click);
-
-            this.btnEditUsuario.Text = "Editar";
-            this.btnEditUsuario.Top = 260;
-            this.btnEditUsuario.Left = 100;
-            this.btnEditUsuario.Click += new System.EventHandler(this.btnEditUsuario_Click);
-
-            this.btnDeleteUsuario.Text = "Eliminar";
-            this.btnDeleteUsuario.Top = 260;
-            this.btnDeleteUsuario.Left = 190;
-            this.btnDeleteUsuario.Click += new System.EventHandler(this.btnDeleteUsuario_Click);
-
-            // Actividades Tab
-            this.tabActividades.Controls.Add(this.dataGridViewActividades);
-            this.tabActividades.Controls.Add(this.btnAddActividad);
-            this.tabActividades.Controls.Add(this.btnEditActividad);
-            this.tabActividades.Controls.Add(this.btnDeleteActividad);
-
-            this.dataGridViewActividades.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewActividades.Height = 250;
-
-            this.btnAddActividad.Text = "Añadir";
-            this.btnAddActividad.Top = 260;
-            this.btnAddActividad.Left = 10;
-            this.btnAddActividad.Click += new System.EventHandler(this.btnAddActividad_Click);
-
-            this.btnEditActividad.Text = "Editar";
-            this.btnEditActividad.Top = 260;
-            this.btnEditActividad.Left = 100;
-            this.btnEditActividad.Click += new System.EventHandler(this.btnEditActividad_Click);
-
-            this.btnDeleteActividad.Text = "Eliminar";
-            this.btnDeleteActividad.Top = 260;
-            this.btnDeleteActividad.Left = 190;
-            this.btnDeleteActividad.Click += new System.EventHandler(this.btnDeleteActividad_Click);
-
-            // Horarios Tab
-            this.tabHorarios.Controls.Add(this.dataGridViewHorarios);
-            this.tabHorarios.Controls.Add(this.btnAddHorario);
-            this.tabHorarios.Controls.Add(this.btnEditHorario);
-            this.tabHorarios.Controls.Add(this.btnDeleteHorario);
-
-            this.dataGridViewHorarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewHorarios.Height = 250;
-
-            this.btnAddHorario.Text = "Añadir";
-            this.btnAddHorario.Top = 260;
-            this.btnAddHorario.Left = 10;
-            this.btnAddHorario.Click += new System.EventHandler(this.btnAddHorario_Click);
-
-            this.btnEditHorario.Text = "Editar";
-            this.btnEditHorario.Top = 260;
-            this.btnEditHorario.Left = 100;
-            this.btnEditHorario.Click += new System.EventHandler(this.btnEditHorario_Click);
-
-            this.btnDeleteHorario.Text = "Eliminar";
-            this.btnDeleteHorario.Top = 260;
-            this.btnDeleteHorario.Left = 190;
-            this.btnDeleteHorario.Click += new System.EventHandler(this.btnDeleteHorario_Click);
-
-            // ListaEspera Tab
-            this.tabLista.Controls.Add(this.dataGridViewLista);
-            this.tabLista.Controls.Add(this.btnDeleteLista);
-
-            this.dataGridViewLista.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridViewLista.Height = 250;
-
-            this.btnDeleteLista.Text = "Eliminar";
-            this.btnDeleteLista.Top = 260;
-            this.btnDeleteLista.Left = 10;
-            this.btnDeleteLista.Click += new System.EventHandler(this.btnDeleteLista_Click);
-
-            // Logout
-            this.btnLogout.Text = "Cerrar Sesión";
-            this.btnLogout.Top = 420;
-            this.btnLogout.Left = 10;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-
-            // FormAdmin
-            this.Controls.Add(this.tabControlAdmin);
-            this.Controls.Add(this.btnLogout);
+            // ==== FORM ====
+            this.BackColor = Color.FromArgb(85, 85, 84);
+            this.ClientSize = new Size(950, 650);
+            this.Font = new Font("Segoe UI", 10F);
+            this.ForeColor = Color.White;
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Panel Administrador";
-            this.ClientSize = new System.Drawing.Size(800, 480);
+
+            // ==== LOGO ARRIBA DERECHA ====
+            picLogo = new PictureBox();
+            picLogo.Image = Image.FromFile(
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "public", "FitData.jpg")
+            );
+            picLogo.Size = new Size(65, 65);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picLogo.Location = new Point(this.ClientSize.Width - 80, 10);
+            this.Controls.Add(picLogo);
+
+            // ==== TABCONTROL ====
+            tabControlAdmin = new TabControl();
+            tabControlAdmin.Dock = DockStyle.Fill;
+            tabControlAdmin.Appearance = TabAppearance.Normal;
+
+            // ==== TABS ====
+            tabUsuarios = new TabPage("Usuarios");
+            tabActividades = new TabPage("Actividades");
+            tabHorarios = new TabPage("Horarios");
+            tabLista = new TabPage("Lista Espera");
+
+            // ==== ESTILO GENERAL ====
+            ApplyTabDarkStyle(tabUsuarios);
+            ApplyTabDarkStyle(tabActividades);
+            ApplyTabDarkStyle(tabHorarios);
+            ApplyTabDarkStyle(tabLista);
+
+            // ==== CREAR CONTENIDO DE CADA TAB ====
+            SetupTab(tabUsuarios, out dataGridViewUsuarios,
+                     out btnAddUsuario, out btnEditUsuario, out btnDeleteUsuario);
+
+            btnAddUsuario.Click += btnAddUsuario_Click;
+            btnEditUsuario.Click += btnEditUsuario_Click;
+            btnDeleteUsuario.Click += btnDeleteUsuario_Click;
+
+            SetupTab(tabActividades, out dataGridViewActividades,
+                     out btnAddActividad, out btnEditActividad, out btnDeleteActividad);
+
+            btnAddActividad.Click += btnAddActividad_Click;
+            btnEditActividad.Click += btnEditActividad_Click;
+            btnDeleteActividad.Click += btnDeleteActividad_Click;
+
+            SetupTab(tabHorarios, out dataGridViewHorarios,
+                     out btnAddHorario, out btnEditHorario, out btnDeleteHorario);
+
+            btnAddHorario.Click += btnAddHorario_Click;
+            btnEditHorario.Click += btnEditHorario_Click;
+            btnDeleteHorario.Click += btnDeleteHorario_Click;
+
+            // LISTA ESPERA
+            SetupTab(tabLista, out dataGridViewLista,
+                     out btnDeleteLista);
+
+            btnDeleteLista.Text = "Eliminar";
+            btnDeleteLista.Click += btnDeleteLista_Click;
+
+            // ==== LOGOUT ====
+            btnLogout = new FitData.Controls.BotonRedondeado();
+            btnLogout.Text = "Cerrar sesión";
+            btnLogout.Dock = DockStyle.Bottom;
+            btnLogout.Height = 50;
+            btnLogout.BorderRadius = 18;
+            btnLogout.BorderSize = 2;
+            btnLogout.BackColor = Color.FromArgb(60, 60, 60);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Click += btnLogout_Click;
+
+            // ==== AGREGAR TABS ====
+            tabControlAdmin.TabPages.Add(tabUsuarios);
+            tabControlAdmin.TabPages.Add(tabActividades);
+            tabControlAdmin.TabPages.Add(tabHorarios);
+            tabControlAdmin.TabPages.Add(tabLista);
+
+            // ==== ADD CONTROLS ====
+            this.Controls.Add(tabControlAdmin);
+            this.Controls.Add(btnLogout);
         }
 
-        private System.Windows.Forms.TabControl tabControlAdmin;
-        private System.Windows.Forms.TabPage tabUsuarios;
-        private System.Windows.Forms.TabPage tabActividades;
-        private System.Windows.Forms.TabPage tabHorarios;
-        private System.Windows.Forms.TabPage tabLista;
+        // =====================================
+        //          FUNCIONES AUXILIARES
+        // =====================================
 
-        private System.Windows.Forms.DataGridView dataGridViewUsuarios;
-        private System.Windows.Forms.Button btnAddUsuario;
-        private System.Windows.Forms.Button btnEditUsuario;
-        private System.Windows.Forms.Button btnDeleteUsuario;
+        private void ApplyTabDarkStyle(TabPage tab)
+        {
+            tab.BackColor = Color.FromArgb(70, 70, 70);
+            tab.ForeColor = Color.White;
+            tab.Padding = new Padding(10);
+        }
 
-        private System.Windows.Forms.DataGridView dataGridViewActividades;
-        private System.Windows.Forms.Button btnAddActividad;
-        private System.Windows.Forms.Button btnEditActividad;
-        private System.Windows.Forms.Button btnDeleteActividad;
+        private void SetupTab(TabPage tab,
+                              out DataGridView grid,
+                              out FitData.Controls.BotonRedondeado btnAdd,
+                              out FitData.Controls.BotonRedondeado btnEdit,
+                              out FitData.Controls.BotonRedondeado btnDelete)
+        {
+            TableLayoutPanel layout = new TableLayoutPanel();
+            layout.Dock = DockStyle.Fill;
+            layout.RowCount = 2;
+            layout.ColumnCount = 1;
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
 
-        private System.Windows.Forms.DataGridView dataGridViewHorarios;
-        private System.Windows.Forms.Button btnAddHorario;
-        private System.Windows.Forms.Button btnEditHorario;
-        private System.Windows.Forms.Button btnDeleteHorario;
+            // GRID
+            grid = new DataGridView();
+            grid.Dock = DockStyle.Fill;
+            grid.ReadOnly = true;
+            grid.BackgroundColor = Color.FromArgb(60, 60, 60);
+            grid.DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
+            grid.DefaultCellStyle.ForeColor = Color.White;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            grid.EnableHeadersVisualStyles = false;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-        private System.Windows.Forms.DataGridView dataGridViewLista;
-        private System.Windows.Forms.Button btnDeleteLista;
+            // PANEL DE BOTONES
+            FlowLayoutPanel panel = new FlowLayoutPanel();
+            panel.Dock = DockStyle.Fill;
+            panel.FlowDirection = FlowDirection.LeftToRight;
+            panel.Padding = new Padding(10);
+            panel.BackColor = Color.FromArgb(70, 70, 70);
 
-        private System.Windows.Forms.Button btnLogout;
+            btnAdd = CreateAdminButton("Añadir");
+            btnEdit = CreateAdminButton("Editar");
+            btnDelete = CreateAdminButton("Eliminar");
+
+            panel.Controls.Add(btnAdd);
+            panel.Controls.Add(btnEdit);
+            panel.Controls.Add(btnDelete);
+
+            layout.Controls.Add(grid, 0, 0);
+            layout.Controls.Add(panel, 0, 1);
+
+            tab.Controls.Add(layout);
+        }
+
+        private void SetupTab(TabPage tab,
+                              out DataGridView grid,
+                              out FitData.Controls.BotonRedondeado btnDelete)
+        {
+            TableLayoutPanel layout = new TableLayoutPanel();
+            layout.Dock = DockStyle.Fill;
+            layout.RowCount = 2;
+            layout.ColumnCount = 1;
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+
+            grid = new DataGridView();
+            grid.Dock = DockStyle.Fill;
+            grid.ReadOnly = true;
+            grid.BackgroundColor = Color.FromArgb(60, 60, 60);
+            grid.DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
+            grid.DefaultCellStyle.ForeColor = Color.White;
+            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
+            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            grid.EnableHeadersVisualStyles = false;
+
+            FlowLayoutPanel panel = new FlowLayoutPanel();
+            panel.Dock = DockStyle.Fill;
+            panel.FlowDirection = FlowDirection.LeftToRight;
+            panel.Padding = new Padding(10);
+            panel.BackColor = Color.FromArgb(70, 70, 70);
+
+            btnDelete = CreateAdminButton("Eliminar");
+            panel.Controls.Add(btnDelete);
+
+            layout.Controls.Add(grid, 0, 0);
+            layout.Controls.Add(panel, 0, 1);
+
+            tab.Controls.Add(layout);
+        }
+
+        private FitData.Controls.BotonRedondeado CreateAdminButton(string text)
+        {
+            return new FitData.Controls.BotonRedondeado
+            {
+                Text = text,
+                Size = new Size(120, 45),
+                BorderRadius = 18,
+                BorderSize = 2,
+                BackColor = Color.FromArgb(60, 60, 60),
+                ForeColor = Color.White,
+                Margin = new Padding(10),
+                Cursor = Cursors.Hand
+            };
+        }
     }
 }
