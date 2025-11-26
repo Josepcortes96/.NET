@@ -53,7 +53,7 @@ namespace FitData.Forms
         {
             try
             {
-                // Validaciones básicas
+               
                 if (string.IsNullOrWhiteSpace(txtNombre.Text))
                 {
                     MessageBox.Show("El nombre es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,7 +72,6 @@ namespace FitData.Forms
                     return;
                 }
 
-                // Rellenar la entidad Actividad
                 _actividad.Nombre = txtNombre.Text.Trim();
                 _actividad.Descripcion = txtDescripcion.Text.Trim();
                 _actividad.NivelIntensidad = txtNivelIntensidad.Text.Trim();
@@ -80,7 +79,7 @@ namespace FitData.Forms
                 _actividad.IdMonitor = idMonitor;
                 _actividad.IdEncargado = idEncargado;
 
-                // Guardar (insertar o actualizar)
+              
                 if (_actividad.IdActividad == 0)
                     _repo.Add(_actividad);
                 else
@@ -96,7 +95,6 @@ namespace FitData.Forms
             }
         }
 
-        // ✅ Botón Cancelar
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();

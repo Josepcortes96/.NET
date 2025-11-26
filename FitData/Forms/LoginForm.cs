@@ -34,23 +34,22 @@ namespace FitData.Forms
                 return;
             }
 
-            // 1) Si el valor almacenado _parece_ un hash, intentamos verificar con PasswordHelper
+            
             var stored = usuario.Password ?? "";
 
             bool loginOk = false;
 
-            // Heurística: muchos hash (PBKDF2/BCrypt/Base64) tienen caracteres '=' al final en base64 o contienen '$'
-            // Pero en tu caso usábamos probablemente Base64 terminando en '='
+            
             bool looksLikeHash = stored.Length > 30 && (stored.Contains("$") || stored.Contains("=") || stored.Length > 50);
 
             if (looksLikeHash)
             {
                 try
                 {
-                    // Si verifica, migramos: guardamos la contraseña en texto plano en la BD
+                  
                     if (PasswordHelper.VerifyPassword(stored, password))
                     {
-                        // migración: guardamos la contraseña en texto plano (sin hash)
+                        
                         usuario.Password = password;
                         repo.Update(usuario);
                         loginOk = true;
@@ -58,13 +57,13 @@ namespace FitData.Forms
                 }
                 catch
                 {
-                    // si la verificación lanza, fallback después
+                   
                     loginOk = false;
                 }
             }
             else
             {
-                // valor actual no parece hash -> comparación directa
+                
                 loginOk = stored == password;
             }
 
@@ -74,7 +73,7 @@ namespace FitData.Forms
                 return;
             }
 
-            // Login correcto — abrir form según rol
+            
             this.Hide();
             switch (usuario.Rol?.ToLowerInvariant())
             {
@@ -91,7 +90,7 @@ namespace FitData.Forms
                     new FormRecepcionista(usuario).Show();
                     break;
                 case "monitor":
-                    new FormMonitor(usuario).Show();  // <-- TU FORM DE MONITOR
+                    new FormMonitor(usuario).Show();  
                     break;
                 default:
                     MessageBox.Show("Rol desconocido.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Warning);

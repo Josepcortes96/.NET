@@ -16,7 +16,7 @@ namespace FitData.Forms
         private readonly ActividadRepository _actividadRepo;
         private readonly ListaEsperaRepository _listaRepo;
 
-        // NUEVO: un único contexto para todo el formulario (evita problemas de tracking)
+      
         private readonly FitDataContext _ctx;
 
         public FormCliente(Usuario cliente)
@@ -78,7 +78,7 @@ namespace FitData.Forms
 
         private void btnReservar_Click(object sender, EventArgs e)
         {
-            // 1) Obtener la fila seleccionada de forma robusta
+          
             if (dataGridViewHorarios.CurrentRow == null && dataGridViewHorarios.SelectedRows.Count == 0 && dataGridViewHorarios.SelectedCells.Count == 0)
             {
                 MessageBox.Show("Selecciona un horario para reservar.");
@@ -99,7 +99,7 @@ namespace FitData.Forms
                 return;
             }
 
-            // 2) Extraer el IdHorario de la fila (si la columna se llama distinto hacemos fallback a la primera celda)
+        
             object idObj = null;
             foreach (DataGridViewCell c in selectedRow.Cells)
             {
@@ -126,7 +126,7 @@ namespace FitData.Forms
                 return;
             }
 
-            // 3) Asegurar que la fila Cliente existe para el usuario actual (usa _ctx)
+            
             try
             {
                 EnsureClienteExists(_cliente.IdUsuario);
@@ -137,7 +137,7 @@ namespace FitData.Forms
                 return;
             }
 
-            // 4) Recuperar el horario por Id (usa el repo correcto)
+          
             var horario = _horarioRepo.GetById(idHorario);
             if (horario == null)
             {
@@ -145,7 +145,7 @@ namespace FitData.Forms
                 return;
             }
 
-            // 5) Lógica de plazas / reserva / lista de espera
+      
             try
             {
                 if (horario.PlazasOcupadas < horario.PlazasTotales)
@@ -158,13 +158,13 @@ namespace FitData.Forms
                         Estado = "confirmada"
                     };
 
-                    // Dejar que el repositorio haga la verificación y el incremento de plazas
+                    
                     _reservaRepo.Add(nueva);
                    
-                    // Simplemente refrescamos los datos en pantalla
+                    
                     MessageBox.Show("✅ Reserva confirmada con éxito.");
 
-                    // refrescar: reconsultar los horarios para ver valores actualizados
+                   
                     btnVerHorarios_Click(sender, e);
                 }
                 else
@@ -190,26 +190,25 @@ namespace FitData.Forms
             btnVerHorarios_Click(sender, e);
         }
 
-        // NUEVO helper: asegura que exista la fila Cliente correspondiente a un usuario
-        // Usa el mismo contexto _ctx y evita duplicados en el ChangeTracker
+     
         private void EnsureClienteExists(int idUsuario)
         {
-            // 1) Si ya hay una entidad Cliente con ese Id en el ChangeTracker -> nada que hacer
+           
             var localCliente = _ctx.Clientes.Local.FirstOrDefault(c => c.IdUsuario == idUsuario);
             if (localCliente != null) return;
 
-            // 2) Intentamos encontrarlo en la BD (Find revisa Local primero)
+            
             var clienteEnBd = _ctx.Clientes.Find(idUsuario);
             if (clienteEnBd != null) return;
 
-            // 3) Si no existe, obtenemos el Usuario (sin trackearlo) para copiar datos
+           
             var usuario = _ctx.Usuarios.AsNoTracking().FirstOrDefault(u => u.IdUsuario == idUsuario);
             if (usuario == null)
             {
                 throw new InvalidOperationException($"No existe Usuario con Id {idUsuario} en la base de datos.");
             }
 
-            // 4) Crear la entidad Cliente nueva y añadirla al mismo contexto (_ctx)
+            
             var nuevoCliente = new Cliente
             {
                 IdUsuario = usuario.IdUsuario,
@@ -223,7 +222,7 @@ namespace FitData.Forms
             }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException dbEx)
             {
-                // Mostrar inner exception y las entidades implicadas (útil para diagnosticar)
+                
                 var inner = dbEx.InnerException?.Message ?? "(sin inner exception)";
                 var entries = string.Join(", ", dbEx.Entries.Select(e => e.Entity.GetType().Name));
                 MessageBox.Show(
@@ -307,7 +306,7 @@ private void btnVerListaEspera_Click(object sender, EventArgs e)
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            // Si tenemos un Owner (el formulario que nos abrió), lo mostramos y cerramos este.
+         
             if (this.Owner != null)
             {
                 this.Owner.Show();
@@ -315,7 +314,7 @@ private void btnVerListaEspera_Click(object sender, EventArgs e)
                 return;
             }
 
-            // Fallback: si no hay owner, buscamos un form abierto que sea el menú (opcional)
+       
             var menu = Application.OpenForms.Cast<Form>().FirstOrDefault(f => f.Name == "FormMenuPrincipal" || f.Name == "FormLogin");
             if (menu != null)
             {
@@ -324,7 +323,7 @@ private void btnVerListaEspera_Click(object sender, EventArgs e)
                 return;
             }
 
-            // Último recurso: abrir una nueva instancia del menú (reemplaza FormMenuPrincipal por tu formulario real)
+         
             var nuevoMenu = new LoginForm(); 
             nuevoMenu.Show();
             this.Close();
