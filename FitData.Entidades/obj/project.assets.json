@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/josep/.nuget/packages/": {}
+    "C:\\Users\\jcortes\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj",
+      "projectUniqueName": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
       "projectName": "FitData.Entidades",
-      "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj",
-      "packagesPath": "/home/josep/.nuget/packages/",
-      "outputPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/obj/",
+      "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+      "packagesPath": "C:\\Users\\jcortes\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/josep/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\jcortes\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -38,7 +38,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -54,12 +60,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

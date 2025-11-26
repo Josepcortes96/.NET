@@ -4737,19 +4737,19 @@
     ]
   },
   "packageFolders": {
-    "/home/josep/.nuget/packages/": {}
+    "C:\\Users\\jcortes\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/josep/UOC/.NET/FitData/FitData.Datos/FitData.Datos.csproj",
+      "projectUniqueName": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
       "projectName": "FitData.Datos",
-      "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Datos/FitData.Datos.csproj",
-      "packagesPath": "/home/josep/.nuget/packages/",
-      "outputPath": "/home/josep/UOC/.NET/FitData/FitData.Datos/obj/",
+      "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+      "packagesPath": "C:\\Users\\jcortes\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/josep/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\jcortes\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4761,8 +4761,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj": {
-              "projectPath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj"
+            "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+              "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
             }
           }
         }
@@ -4771,7 +4771,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -4799,12 +4805,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Kl/yw55wvDRVtqiKiqTf06ZMIuPZErobYhK8xPHiLQezvSErTn2F/OfHEhQXnBhaAmBLl4cuZpDvHzOpFwOUpQ==",
+  "dgSpecHash": "WjbVy5Gc6RA=",
   "success": true,
-  "projectFilePath": "/home/josep/UOC/.NET/FitData/FitData.Entidades/FitData.Entidades.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jcortes\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\jcortes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\jcortes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+  ],
   "logs": []
 }
