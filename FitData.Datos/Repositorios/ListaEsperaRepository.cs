@@ -13,20 +13,36 @@ namespace FitData.Datos.Repositorios
             _context = context;
         }
 
+        // Obtener lista ordenada por posición
         public List<ListaEspera> GetByHorario(int idHorario)
         {
             return _context.ListaEsperas
-                           .Where(l => l.IdHorario == idHorario)
-                           .OrderBy(l => l.Posicion)
-                           .ToList();
+                .Where(l => l.IdHorario == idHorario)
+                .OrderBy(l => l.Posicion)
+                .ToList();
         }
 
+        // Añadir verificando duplicados + posicion correcta
         public void Add(ListaEspera l)
         {
+            //  Evitar duplicados
+            bool alreadyExists = _context.ListaEsperas
+                .Any(e => e.IdCliente == l.IdCliente && e.IdHorario == l.IdHorario);
+
+            if (alreadyExists)
+                throw new InvalidOperationException("El cliente ya está en la lista de espera.");
+
+            //  Asignar posición automática correcta
+            int nextPos = _context.ListaEsperas
+                .Count(e => e.IdHorario == l.IdHorario) + 1;
+
+            l.Posicion = nextPos;
+
             _context.ListaEsperas.Add(l);
             _context.SaveChanges();
         }
 
+        // Eliminar entrada
         public void Delete(int idLista)
         {
             var item = _context.ListaEsperas.FirstOrDefault(x => x.IdLista == idLista);
@@ -37,18 +53,23 @@ namespace FitData.Datos.Repositorios
             }
         }
 
-        // Obtener primer elemento en la fila (posición 1)
+        // Devuelve el primero en la cola (posición 1)
         public ListaEspera GetFirstInQueue(int idHorario)
         {
-            return _context.ListaEsperas.Where(l => l.IdHorario == idHorario)
-                                       .OrderBy(l => l.Posicion)
-                                       .FirstOrDefault();
+            return _context.ListaEsperas
+                .Where(l => l.IdHorario == idHorario)
+                .OrderBy(l => l.Posicion)
+                .FirstOrDefault();
         }
-         
-        // Reasigna posiciones empezando en 1 para un horario concreto
+        
+        // Reordenar posiciones tras borrar uno
         public void ReorderPositions(int idHorario)
         {
-            var list = _context.ListaEsperas.Where(l => l.IdHorario == idHorario).OrderBy(l => l.Posicion).ToList();
+            var list = _context.ListaEsperas
+                .Where(l => l.IdHorario == idHorario)
+                .OrderBy(l => l.Posicion)
+                .ToList();
+
             int pos = 1;
             foreach (var item in list)
             {
@@ -58,10 +79,23 @@ namespace FitData.Datos.Repositorios
             _context.SaveChanges();
         }
 
-        // Obtener todas las entradas donde el cliente está en lista de espera
+        // Obtener todas las listas donde está un cliente
         public List<ListaEspera> GetAllByCliente(int idCliente)
         {
-            return _context.ListaEsperas.Where(l => l.IdCliente == idCliente).OrderBy(l => l.IdHorario).ToList();
+            return _context.ListaEsperas
+                .Where(l => l.IdCliente == idCliente)
+                .OrderBy(l => l.IdHorario)
+                .ToList();
         }
+
+        // Obtener TODAS las entradas de lista de espera 
+        public List<ListaEspera> GetAll()
+        {
+            return _context.ListaEsperas
+                .OrderBy(l => l.IdHorario)
+                .ThenBy(l => l.Posicion)
+                .ToList();
+        }
+
     }
 }

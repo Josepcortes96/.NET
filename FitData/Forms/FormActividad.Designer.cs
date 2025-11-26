@@ -1,114 +1,163 @@
-﻿namespace FitData.Forms
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace FitData.Forms
 {
     partial class FormActividad
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.Label lblNivelIntensidad;
-        private System.Windows.Forms.Label lblSala;
-        private System.Windows.Forms.Label lblIdMonitor;
-        private System.Windows.Forms.Label lblIdEncargado;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtNivelIntensidad;
-        private System.Windows.Forms.TextBox txtSala;
-        private System.Windows.Forms.TextBox txtIdMonitor;
-        private System.Windows.Forms.TextBox txtIdEncargado;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnCancelar;
+
+        private Label lblNombre, lblDescripcion, lblNivelIntensidad, lblSala, lblIdMonitor, lblIdEncargado;
+        private TextBox txtNombre, txtDescripcion, txtNivelIntensidad, txtSala, txtIdMonitor, txtIdEncargado;
+        private FitData.Controls.BotonRedondeado btnGuardar, btnCancelar;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && components != null)
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.lblNivelIntensidad = new System.Windows.Forms.Label();
-            this.lblSala = new System.Windows.Forms.Label();
-            this.lblIdMonitor = new System.Windows.Forms.Label();
-            this.lblIdEncargado = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtNivelIntensidad = new System.Windows.Forms.TextBox();
-            this.txtSala = new System.Windows.Forms.TextBox();
-            this.txtIdMonitor = new System.Windows.Forms.TextBox();
-            this.txtIdEncargado = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
 
-            // 
-            // Labels
-            // 
-            this.lblNombre.Text = "Nombre:";
-            this.lblNombre.Location = new System.Drawing.Point(20, 20);
-            this.lblDescripcion.Text = "Descripción:";
-            this.lblDescripcion.Location = new System.Drawing.Point(20, 60);
-            this.lblNivelIntensidad.Text = "Nivel Intensidad:";
-            this.lblNivelIntensidad.Location = new System.Drawing.Point(20, 100);
-            this.lblSala.Text = "Sala:";
-            this.lblSala.Location = new System.Drawing.Point(20, 140);
-            this.lblIdMonitor.Text = "ID Monitor:";
-            this.lblIdMonitor.Location = new System.Drawing.Point(20, 180);
-            this.lblIdEncargado.Text = "ID Encargado:";
-            this.lblIdEncargado.Location = new System.Drawing.Point(20, 220);
+            // ==== FORM ==== 
+            this.BackColor = Color.FromArgb(85, 85, 84);
+            this.ClientSize = new Size(520, 550);
+            this.Font = new Font("Segoe UI", 11F);
+            this.ForeColor = Color.White;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Gestión de Actividad";
+            this.FormBorderStyle = FormBorderStyle.Sizable;
 
-            // 
-            // TextBoxes
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(150, 20);
-            this.txtDescripcion.Location = new System.Drawing.Point(150, 60);
-            this.txtNivelIntensidad.Location = new System.Drawing.Point(150, 100);
-            this.txtSala.Location = new System.Drawing.Point(150, 140);
-            this.txtIdMonitor.Location = new System.Drawing.Point(150, 180);
-            this.txtIdEncargado.Location = new System.Drawing.Point(150, 220);
+            // ==== LOGO ARRIBA DERECHA ====
+            PictureBox picLogoSmall = new PictureBox();
+            picLogoSmall.Image = Image.FromFile(
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "public", "FitData.jpg")
+            );
+            picLogoSmall.Size = new Size(60, 60);
+            picLogoSmall.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogoSmall.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picLogoSmall.Location = new Point(this.ClientSize.Width - 75, 10);
+            this.Controls.Add(picLogoSmall);
 
-            this.txtNombre.Size = this.txtDescripcion.Size = this.txtNivelIntensidad.Size =
-                this.txtSala.Size = this.txtIdMonitor.Size = this.txtIdEncargado.Size = new System.Drawing.Size(180, 23);
+            this.Resize += (s, e) =>
+            {
+                picLogoSmall.Location = new Point(this.ClientSize.Width - 75, 10);
+            };
 
-            // 
-            // Buttons
-            // 
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Location = new System.Drawing.Point(50, 270);
-            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // ========== CONTENIDO SCROLEABLE ==========
+            Panel scrollPanel = new Panel();
+            scrollPanel.Dock = DockStyle.Fill;
+            scrollPanel.AutoScroll = true;
+            scrollPanel.Padding = new Padding(30, 90, 30, 20);
+            this.Controls.Add(scrollPanel);
 
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Location = new System.Drawing.Point(180, 270);
-            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // ==== TABLE LAYOUT PRINCIPAL ====
+            TableLayoutPanel layout = new TableLayoutPanel();
+            layout.ColumnCount = 2;
+            layout.Dock = DockStyle.Top;
+            layout.AutoSize = true;
 
-            // 
-            // FormActividad
-            // 
-            this.ClientSize = new System.Drawing.Size(370, 330);
-            this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.lblDescripcion);
-            this.Controls.Add(this.lblNivelIntensidad);
-            this.Controls.Add(this.lblSala);
-            this.Controls.Add(this.lblIdMonitor);
-            this.Controls.Add(this.lblIdEncargado);
-            this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.txtNivelIntensidad);
-            this.Controls.Add(this.txtSala);
-            this.Controls.Add(this.txtIdMonitor);
-            this.Controls.Add(this.txtIdEncargado);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnCancelar);
-            this.Name = "FormActividad";
-            this.Text = "Añadir Actividad";
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+
+            // ==== CAMPOS ====
+            lblNombre = new Label() { Text = "Nombre:", AutoSize = true };
+            txtNombre = CreateTextBox();
+
+            lblDescripcion = new Label() { Text = "Descripción:", AutoSize = true };
+            txtDescripcion = CreateTextBox();
+
+            lblNivelIntensidad = new Label() { Text = "Nivel Intensidad:", AutoSize = true };
+            txtNivelIntensidad = CreateTextBox();
+
+            lblSala = new Label() { Text = "Sala:", AutoSize = true };
+            txtSala = CreateTextBox();
+
+            lblIdMonitor = new Label() { Text = "ID Monitor:", AutoSize = true };
+            txtIdMonitor = CreateTextBox();
+
+            lblIdEncargado = new Label() { Text = "ID Encargado:", AutoSize = true };
+            txtIdEncargado = CreateTextBox();
+
+            AddRow(layout, lblNombre, txtNombre);
+            AddRow(layout, lblDescripcion, txtDescripcion);
+            AddRow(layout, lblNivelIntensidad, txtNivelIntensidad);
+            AddRow(layout, lblSala, txtSala);
+            AddRow(layout, lblIdMonitor, txtIdMonitor);
+            AddRow(layout, lblIdEncargado, txtIdEncargado);
+
+            scrollPanel.Controls.Add(layout);
+
+            // ==== BOTONES INFERIORES ====
+            btnGuardar = CreateButton("Guardar", Color.FromArgb(0, 120, 215));
+            btnGuardar.Click += btnGuardar_Click;
+
+            btnCancelar = CreateButton("Cancelar", Color.FromArgb(60, 60, 60));
+            btnCancelar.Click += btnCancelar_Click;
+
+            TableLayoutPanel buttonLayout = new TableLayoutPanel();
+            buttonLayout.Dock = DockStyle.Bottom;
+            buttonLayout.Height = 80;
+            buttonLayout.ColumnCount = 2;
+            buttonLayout.RowCount = 1;
+            buttonLayout.Padding = new Padding(40, 10, 40, 10);
+
+            buttonLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+            buttonLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+
+            btnGuardar.Anchor = AnchorStyles.None;
+            btnCancelar.Anchor = AnchorStyles.None;
+
+            buttonLayout.Controls.Add(btnGuardar, 0, 0);
+            buttonLayout.Controls.Add(btnCancelar, 1, 0);
+
+            this.Controls.Add(buttonLayout);
+
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        private TextBox CreateTextBox()
+        {
+            return new TextBox()
+            {
+                BackColor = Color.FromArgb(50, 50, 50),
+                ForeColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                Width = 250,
+                Height = 28
+            };
+        }
+
+        private FitData.Controls.BotonRedondeado CreateButton(string text, Color backColor)
+        {
+            return new FitData.Controls.BotonRedondeado()
+            {
+                Text = text,
+                BorderRadius = 18,
+                BorderSize = 3,
+                BorderColor = Color.White,
+                BackColor = backColor,
+                ForeColor = Color.White,
+                Size = new Size(150, 48),
+                Margin = new Padding(20)
+            };
+        }
+
+        private void AddRow(TableLayoutPanel layout, Label lbl, TextBox txt)
+        {
+            int row = layout.RowCount;
+
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
+            layout.Controls.Add(lbl, 0, row);
+            layout.Controls.Add(txt, 1, row);
+
+            layout.RowCount++;
         }
     }
 }

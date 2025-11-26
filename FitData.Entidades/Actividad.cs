@@ -6,7 +6,7 @@ namespace FitData.Entidades
     public class Actividad
     {
         /// <summary>
-        /// Identificador único de la actividad.
+        /// Identificador ï¿½nico de la actividad.
         /// </summary>
         public int IdActividad { get; set; }
 
@@ -16,7 +16,7 @@ namespace FitData.Entidades
         public string Nombre { get; set; } = string.Empty;
 
         /// <summary>
-        /// Descripción de la actividad.
+        /// Descripciï¿½n de la actividad.
         /// </summary>
         public string Descripcion { get; set; } = string.Empty;
 
@@ -26,20 +26,20 @@ namespace FitData.Entidades
         public string NivelIntensidad { get; set; } = string.Empty;
 
         /// <summary>
-        /// Sala o ubicación donde se imparte la actividad (por ejemplo: Sala 1, Sala 2...).
+        /// Sala o ubicaciï¿½n donde se imparte la actividad (por ejemplo: Sala 1, Sala 2...).
         /// </summary>
         public string Sala { get; set; } = string.Empty;
 
         /// <summary>
         /// Identificador del monitor responsable de impartir la actividad.
-        /// Clave foránea hacia la tabla Monitores.
+        /// Clave forï¿½nea hacia la tabla Monitores.
         /// </summary>
         public int IdMonitor { get; set; }
 
         /// <summary>
         /// Identificador del encargado que gestiona esta actividad.
-        /// Clave foránea hacia la tabla Encargado.
-        /// Es nullable porque puede que aún no esté asignado.
+        /// Clave forï¿½nea hacia la tabla Encargado.
+        /// Es nullable porque puede que aï¿½n no estï¿½ asignado.
         /// </summary>
         public int? IdEncargado { get; set; }
 

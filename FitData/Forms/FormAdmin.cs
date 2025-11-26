@@ -11,24 +11,35 @@ namespace FitData.Forms
     public partial class FormAdmin : Form
     {
         private readonly Usuario _currentUser;
+
+        private readonly FitDataContext _ctx;
         private readonly UsuarioRepository _usuarioRepo;
         private readonly ActividadRepository _actividadRepo;
         private readonly HorarioRepository _horarioRepo;
+        private readonly ListaEsperaRepository _listaRepo;
 
         public FormAdmin(Usuario usuario)
         {
             InitializeComponent();
             _currentUser = usuario;
 
-            var ctx = new FitDataContext();
-            _usuarioRepo = new UsuarioRepository(ctx);
-            _actividadRepo = new ActividadRepository(ctx);
-            _horarioRepo = new HorarioRepository(ctx);
+            // Un solo contexto compartido
+            _ctx = new FitDataContext();
+            _usuarioRepo = new UsuarioRepository(_ctx);
+            _actividadRepo = new ActividadRepository(_ctx);
+            _horarioRepo = new HorarioRepository(_ctx);
+            _listaRepo = new ListaEsperaRepository(_ctx);
 
+            // Cargar todo
             LoadUsuarios();
             LoadActividades();
+            LoadHorarios();      // no depende de actividad
+            LoadListaEspera();   // toda la tabla
         }
 
+        // ==============================
+        //            USUARIOS
+        // ==============================
         private void LoadUsuarios()
         {
             dataGridViewUsuarios.DataSource = _usuarioRepo.GetAll();
@@ -36,96 +47,107 @@ namespace FitData.Forms
                 dataGridViewUsuarios.Columns["Password"].Visible = false;
         }
 
-        private void LoadActividades()
-        {
-            dataGridViewActividades.DataSource = _actividadRepo.GetAll();
-        }
-
-        private void LoadHorarios(int idActividad)
-        {
-            dataGridViewHorarios.DataSource = _horarioRepo.GetByActividad(idActividad);
-        }
-
-        private void dataGridViewActividades_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridViewActividades.CurrentRow != null)
-            {
-                var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
-                LoadHorarios(act.IdActividad);
-            }
-        }
-
-        // ------------------ USUARIOS ------------------
-
         private void btnAddUsuario_Click(object sender, EventArgs e)
         {
-            var form = new FormUsuario();
-            if (form.ShowDialog() == DialogResult.OK)
+            var f = new FormUsuario();
+            if (f.ShowDialog() == DialogResult.OK)
                 LoadUsuarios();
         }
 
         private void btnEditUsuario_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsuarios.CurrentRow == null) return;
+
             var user = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
-            var form = new FormUsuario(user);
-            if (form.ShowDialog() == DialogResult.OK)
+            var f = new FormUsuario(user);
+
+            if (f.ShowDialog() == DialogResult.OK)
                 LoadUsuarios();
         }
 
         private void btnDeleteUsuario_Click(object sender, EventArgs e)
         {
             if (dataGridViewUsuarios.CurrentRow == null) return;
+
             var user = (Usuario)dataGridViewUsuarios.CurrentRow.DataBoundItem;
             _usuarioRepo.Delete(user.IdUsuario);
             LoadUsuarios();
         }
 
-        // ------------------ ACTIVIDADES ------------------
+
+        // ==============================
+        //          ACTIVIDADES
+        // ==============================
+        private void LoadActividades()
+        {
+            dataGridViewActividades.DataSource = _actividadRepo.GetAll();
+        }
 
         private void btnAddActividad_Click(object sender, EventArgs e)
         {
-            var form = new FormActividad(_actividadRepo);
-            if (form.ShowDialog() == DialogResult.OK)
+            var f = new FormActividad(_actividadRepo);
+            if (f.ShowDialog() == DialogResult.OK)
                 LoadActividades();
         }
 
         private void btnEditActividad_Click(object sender, EventArgs e)
         {
             if (dataGridViewActividades.CurrentRow == null) return;
+
             var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
-            var form = new FormActividad(_actividadRepo, act);
-            if (form.ShowDialog() == DialogResult.OK)
+            var f = new FormActividad(_actividadRepo, act);
+
+            if (f.ShowDialog() == DialogResult.OK)
                 LoadActividades();
         }
 
         private void btnDeleteActividad_Click(object sender, EventArgs e)
         {
             if (dataGridViewActividades.CurrentRow == null) return;
+
             var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
             _actividadRepo.Delete(act.IdActividad);
             LoadActividades();
         }
 
-        // ------------------ HORARIOS ------------------
+
+        // ==============================
+        //             HORARIOS
+        // ==============================
+private void LoadHorarios()
+{
+    var horarios = _horarioRepo.GetAll();
+
+    var lista = horarios
+        .Join(
+            _ctx.Actividades,
+            h => h.IdActividad,
+            a => a.IdActividad,
+            (h, a) => new
+            {
+                h.IdHorario,
+                Actividad = a.Nombre,
+                Dia = h.DiaSemana,
+                Inicio = h.HoraInicio.ToString(),
+                Fin = h.HoraFin.ToString(),
+                a.Sala,
+                h.PlazasTotales,
+                h.PlazasOcupadas
+            }
+        )
+        .ToList();
+
+    dataGridViewHorarios.DataSource = lista;
+}
+
 
         private void btnAddHorario_Click(object sender, EventArgs e)
         {
-            if (dataGridViewActividades.CurrentRow == null)
-            {
-                MessageBox.Show("Selecciona una actividad primero.");
-                return;
-            }
+            List<Actividad> acts = _actividadRepo.GetAll();
+            var f = new FormHorario(_horarioRepo, acts);
 
-            // Pasa todas las actividades al constructor
-            List<Actividad> actividades = _actividadRepo.GetAll();
-            var form = new FormHorario(_horarioRepo, actividades);
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                var act = (Actividad)dataGridViewActividades.CurrentRow.DataBoundItem;
-                LoadHorarios(act.IdActividad);
-            }
+            if (f.ShowDialog() == DialogResult.OK)
+                LoadHorarios();
         }
 
         private void btnEditHorario_Click(object sender, EventArgs e)
@@ -133,32 +155,54 @@ namespace FitData.Forms
             if (dataGridViewHorarios.CurrentRow == null) return;
 
             var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
-            List<Actividad> actividades = _actividadRepo.GetAll();
+            List<Actividad> acts = _actividadRepo.GetAll();
 
-            var form = new FormHorario(_horarioRepo, actividades, horario);
-            if (form.ShowDialog() == DialogResult.OK)
-                LoadHorarios(horario.IdActividad);
+            var f = new FormHorario(_horarioRepo, acts, horario);
+
+            if (f.ShowDialog() == DialogResult.OK)
+                LoadHorarios();
         }
 
         private void btnDeleteHorario_Click(object sender, EventArgs e)
         {
             if (dataGridViewHorarios.CurrentRow == null) return;
+
             var horario = (Horario)dataGridViewHorarios.CurrentRow.DataBoundItem;
             _horarioRepo.Delete(horario.IdHorario);
-            LoadHorarios(horario.IdActividad);
+
+            LoadHorarios();
         }
 
-        // ------------------ SALIR ------------------
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        // ==============================
+        //        LISTA DE ESPERA
+        // ==============================
+        private void LoadListaEspera()
         {
-            this.Close();
-            new LoginForm().Show();
+            dataGridViewLista.DataSource = _listaRepo.GetAll();
         }
 
         private void btnDeleteLista_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de eliminar lista aún no implementada.");
+            if (dataGridViewLista.CurrentRow == null) return;
+
+            var item = (ListaEspera)dataGridViewLista.CurrentRow.DataBoundItem;
+            _listaRepo.Delete(item.IdLista);
+
+            // Rearmar posiciones por horario
+            _listaRepo.ReorderPositions(item.IdHorario);
+
+            LoadListaEspera();
+        }
+
+
+        // ==============================
+        //             SALIR
+        // ==============================
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new LoginForm().Show();
         }
     }
 }
