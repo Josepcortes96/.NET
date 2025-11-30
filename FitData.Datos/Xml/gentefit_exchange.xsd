@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- gentefit_exchange_es.xsd v1.0 - nombres en español -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:element name="GenteFitExchange">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InfoLote" type="InfoLoteType"/>
+				<xs:element name="Usuarios" type="UsuariosType" minOccurs="0"/>
+				<xs:element name="Actividades" type="ActividadesType" minOccurs="0"/>
+				<xs:element name="Reservas" type="ReservasType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Info del lote -->
+	<xs:complexType name="InfoLoteType">
+		<xs:sequence>
+			<xs:element name="IdLote" type="xs:string"/>
+			<xs:element name="GeneradoEn" type="xs:dateTime"/>
+			<xs:element name="SistemaOrigen" type="xs:string"/>
+			<xs:element name="Descripcion" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Usuario -->
+	<xs:complexType name="UsuarioType">
+		<xs:sequence>
+			<xs:element name="IdUsuario" type="xs:int"/>
+			<xs:element name="Nombre" type="xs:string"/>
+			<xs:element name="Apellido" type="xs:string"/>
+			<xs:element name="Nif" type="xs:string" minOccurs="0"/>
+			<xs:element name="Rol" type="xs:string" minOccurs="0"/>
+			<xs:element name="Username" type="xs:string" minOccurs="0"/>
+			<xs:element name="Email" type="xs:string" minOccurs="0"/>
+			<xs:element name="Telefono" type="xs:string" minOccurs="0"/>
+			<xs:element name="FechaNacimiento" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UsuariosType">
+		<xs:sequence>
+			<xs:element name="Usuario" type="UsuarioType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Actividad -->
+	<xs:complexType name="ActividadType">
+		<xs:sequence>
+			<xs:element name="IdActividad" type="xs:string"/>
+			<xs:element name="NombreActividad" type="xs:string"/>
+			<xs:element name="Descripcion" type="xs:string" minOccurs="0"/>
+			<xs:element name="Intensidad" type="xs:string" minOccurs="0"/>
+			<xs:element name="Sala" type="xs:string" minOccurs="0"/>
+			<xs:element name="Plazas" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ActividadesType">
+		<xs:sequence>
+			<xs:element name="Actividad" type="ActividadType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Reserva -->
+	<xs:complexType name="ReservaType">
+		<xs:sequence>
+			<xs:element name="IdReserva" type="xs:string"/>
+			<xs:element name="IdUsuario" type="xs:int"/>
+			<xs:element name="IdActividad" type="xs:string"/>
+			<xs:element name="FechaHora" type="xs:dateTime"/>
+			<xs:element name="Estado" type="xs:string"/>
+			<xs:element name="Notas" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReservasType">
+		<xs:sequence>
+			<xs:element name="Reserva" type="ReservaType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

@@ -29,7 +29,7 @@ namespace FitData.Datos
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    "Server=localhost,1433;Database=fitdata;User Id=sa;Password=C4mbiami!;TrustServerCertificate=True;");
+                    "Server=localhost\\SQLEXPRESS2022;Database=fitdata;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
 

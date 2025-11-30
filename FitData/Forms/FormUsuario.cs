@@ -84,5 +84,10 @@ namespace FitData.Forms
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

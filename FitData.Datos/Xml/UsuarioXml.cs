@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace FitData.Datos.Xml
 {
-    internal class UsuarioXml
+    public class UsuarioXml
     {
         [XmlElement("IdUsuario")]
         public int IdUsuario { get; set; }
@@ -27,7 +23,17 @@ namespace FitData.Datos.Xml
         [XmlElement("Username")]
         public string Username { get; set; } = "";
 
-        // NO incluimos Password por seguridad. 
-    
+        [XmlElement("Email")]
+        public string Email { get; set; } = "";
+
+        [XmlElement("Telefono")]
+        public string Telefono { get; set; } = "";
+
+        // Fecha como DateTime nullable. Serializa como "YYYY-MM-DD" si DataType="date" se usa al serializar.
+        [XmlElement("FechaNacimiento", DataType = "date", IsNullable = true)]
+        public DateTime? FechaNacimiento { get; set; } = null;
+
+        [XmlIgnore]
+        public string Password { get; set; } = "";
     }
 }

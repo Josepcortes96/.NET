@@ -1,6 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Remove="Xml\gentefit_exchange.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Xml\gentefit_exchange.xsd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FitData.Entidades\FitData.Entidades.csproj" />
   </ItemGroup>
 
