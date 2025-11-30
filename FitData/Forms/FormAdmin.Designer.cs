@@ -34,6 +34,8 @@ namespace FitData.Forms
         private FitData.Controls.BotonRedondeado btnDeleteLista;
 
         private FitData.Controls.BotonRedondeado btnLogout;
+        private FitData.Controls.BotonRedondeado btnOdoo;
+
 
         protected override void Dispose(bool disposing)
         {
@@ -111,6 +113,28 @@ namespace FitData.Forms
             btnDeleteLista.Text = "Eliminar";
             btnDeleteLista.Click += btnDeleteLista_Click;
 
+
+            // ==== BOTON ODOO (solo visible para admins) ====
+            btnOdoo = new FitData.Controls.BotonRedondeado();
+            btnOdoo.Text = "Odoo";
+            btnOdoo.Size = new Size(120, 45);
+            btnOdoo.BorderRadius = 18;
+            btnOdoo.BorderSize = 2;
+            btnOdoo.BackColor = Color.FromArgb(60, 60, 60);
+            btnOdoo.ForeColor = Color.White;
+            btnOdoo.Margin = new Padding(10);
+            btnOdoo.Cursor = Cursors.Hand;
+            // Posición: lo colocamos en la parte inferior, encima del logout (puedes cambiar Dock)
+            // btnOdoo.Dock = DockStyle.Bottom; // si prefieres modo dock
+            btnOdoo.Location = new Point(10, this.ClientSize.Height - 110); // ajustar si no usas Dock
+            btnOdoo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnOdoo.Click += btnOdoo_Click;
+
+            // Añadir al form 
+            this.Controls.Add(btnOdoo);
+
+
+
             // ==== LOGOUT ====
             btnLogout = new FitData.Controls.BotonRedondeado();
             btnLogout.Text = "Cerrar sesión";
@@ -127,6 +151,7 @@ namespace FitData.Forms
             tabControlAdmin.TabPages.Add(tabActividades);
             tabControlAdmin.TabPages.Add(tabHorarios);
             tabControlAdmin.TabPages.Add(tabLista);
+         
 
             // ==== ADD CONTROLS ====
             this.Controls.Add(tabControlAdmin);
@@ -176,9 +201,9 @@ namespace FitData.Forms
             panel.Padding = new Padding(10);
             panel.BackColor = Color.FromArgb(70, 70, 70);
 
-            btnAdd = CreateAdminButton("Añadir");
-            btnEdit = CreateAdminButton("Editar");
-            btnDelete = CreateAdminButton("Eliminar");
+            btnAdd = CreateExportButton("Añadir");
+            btnEdit = CreateExportButton("Editar");
+            btnDelete = CreateExportButton("Eliminar");
 
             panel.Controls.Add(btnAdd);
             panel.Controls.Add(btnEdit);

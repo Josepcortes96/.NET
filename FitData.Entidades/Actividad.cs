@@ -26,7 +26,7 @@ namespace FitData.Entidades
         public string NivelIntensidad { get; set; } = string.Empty;
 
         /// <summary>
-        /// Sala o ubicaci�n donde se imparte la actividad (por ejemplo: Sala 1, Sala 2...).
+        /// Sala o ubicacion donde se imparte la actividad (por ejemplo: Sala 1, Sala 2...).
         /// </summary>
         public string Sala { get; set; } = string.Empty;
 

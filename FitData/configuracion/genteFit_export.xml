@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GenteFitExport xmlns="http://example.org/gentefit"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://example.org/gentefit genteFit_schema.xsd">
+
+	<!-- Batch -->
+	<Batch>
+		<BatchId>EXPORT-20251129-001</BatchId>
+		<Date>2025-11-29T20:00:00Z</Date>
+		<Origin>GenteFit</Origin>
+		<CenterCode>GF-001</CenterCode>
+		<User>admin</User>
+		<Type>full</Type>
+	</Batch>
+
+	<!-- Usuarios -->
+	<Usuarios>
+		<Usuario>
+			<IdUsuario>1</IdUsuario>
+			<Nombre>Ana</Nombre>
+			<Apellido>Pérez</Apellido>
+			<Nif>12345678A</Nif>
+			<Rol>administrador</Rol>
+			<Username>ana.perez</Username>
+		</Usuario>
+		<Usuario>
+			<IdUsuario>2</IdUsuario>
+			<Nombre>Jorge</Nombre>
+			<Apellido>García</Apellido>
+			<Nif>87654321B</Nif>
+			<Rol>cliente</Rol>
+			<Username>jorge.g</Username>
+		</Usuario>
+	</Usuarios>
+
+	<!-- Clientes -->
+	<Clientes>
+		<Cliente>
+			<IdUsuario>2</IdUsuario>
+			<Nombre>Jorge</Nombre>
+			<Apellido>García</Apellido>
+			<Nif>87654321B</Nif>
+			<Username>jorge.g</Username>
+			<Rol>cliente</Rol>
+		</Cliente>
+	</Clientes>
+
+</GenteFitExport>
+

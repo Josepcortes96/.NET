@@ -18,6 +18,12 @@
     <ProjectReference Include="..\FitData.Entidades\FitData.Entidades.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="configuracion\genteFit_schema.xsd">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
