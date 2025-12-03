@@ -4769,11 +4769,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\jcortes\\NET\\.NET\\FitData\\FitData.csproj",
+      "projectUniqueName": "C:\\Users\\jcortes\\NET\\.NET\\FitData\\FitData.csproj",
       "projectName": "FitData",
-      "projectPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData\\FitData.csproj",
+      "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData\\FitData.csproj",
       "packagesPath": "C:\\Users\\jcortes\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData\\obj\\",
+      "outputPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jcortes\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4788,11 +4788,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "c:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj": {
-              "projectPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj"
+            "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj": {
+              "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj"
             },
-            "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
-              "projectPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
+            "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj": {
+              "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Entidades\\FitData.Entidades.csproj"
             }
           }
         }
