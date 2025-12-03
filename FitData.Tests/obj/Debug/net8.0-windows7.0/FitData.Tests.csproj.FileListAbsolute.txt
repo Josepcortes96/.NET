@@ -166,3 +166,4 @@ C:\Users\jcortes\NET\.NET\FitData.Tests\obj\Debug\net8.0-windows7.0\refint\FitDa
 C:\Users\jcortes\NET\.NET\FitData.Tests\obj\Debug\net8.0-windows7.0\FitData.Tests.pdb
 C:\Users\jcortes\NET\.NET\FitData.Tests\obj\Debug\net8.0-windows7.0\FitData.Tests.genruntimeconfig.cache
 C:\Users\jcortes\NET\.NET\FitData.Tests\obj\Debug\net8.0-windows7.0\ref\FitData.Tests.dll
+C:\Users\jcortes\NET\.NET\FitData.Tests\bin\Debug\net8.0-windows7.0\XmlRpcCore.dll
