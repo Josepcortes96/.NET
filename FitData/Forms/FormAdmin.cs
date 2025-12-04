@@ -35,8 +35,8 @@ namespace FitData.Forms
             // Cargar todo
             LoadUsuarios();
             LoadActividades();
-            LoadHorarios();      // no depende de actividad
-            LoadListaEspera();   // toda la tabla
+            LoadHorarios();     
+            LoadListaEspera();  
         }
 
         // ==============================
@@ -91,115 +91,115 @@ namespace FitData.Forms
                     btnSyncOdoo.Enabled = true;
                 
                 }
+                        }
+                    private string FixLength(string value, int max)
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    return new string('X', max);
+
+                value = value.Trim();
+
+                return value.Length > max ? value.Substring(0, max) : value;
             }
-         private string FixLength(string value, int max)
-{
-    if (string.IsNullOrWhiteSpace(value))
-        return new string('X', max);
-
-    value = value.Trim();
-
-    return value.Length > max ? value.Substring(0, max) : value;
-}
 
 
           private async void btnImportFromOdoo_Click(object sender, EventArgs e)
-{
-    try
-    {
-        string apiKey = "fitdata";
-        string url = "http://136.144.233.39:8069/gentefit/users";
-
-        using (HttpClient client = new HttpClient())
         {
-            client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
-
-            var response = await client.GetAsync(url);
-            string json = await response.Content.ReadAsStringAsync();
-
-            JObject parsed = JObject.Parse(json);
-
-            if (parsed["error"] != null)
+            try
             {
-                MessageBox.Show("Error desde Odoo: " + parsed["error"]);
-                return;
-            }
+                string apiKey = "fitdata";
+                string url = "http://136.144.233.39:8069/gentefit/users";
 
-            var list = parsed["users"].ToObject<List<OdooUserDto>>();
-
-            int insertados = 0, actualizados = 0;
-
-            using (var db = new FitDataContext())
-            {
-                foreach (var u in list)
+                using (HttpClient client = new HttpClient())
                 {
-                   // Normalizamos email para evitar nulos
-string email = u.email ?? $"odoo{u.id}@fitdata.com";
-email = FixLength(email, 15);
+                    client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
 
-// 1️⃣ Buscar si ya existe por nombre
-var existePorNombre = db.Usuarios.FirstOrDefault(x => x.Nombre == u.name);
+                    var response = await client.GetAsync(url);
+                    string json = await response.Content.ReadAsStringAsync();
 
-// 2️⃣ Buscar si ya existe por email
-var existePorEmail = db.Usuarios.FirstOrDefault(x => x.Username == email);
+                    JObject parsed = JObject.Parse(json);
 
-// SI YA EXISTE POR NOMBRE O EMAIL → NO INSERTAR
-if (existePorNombre != null || existePorEmail != null)
-{
-    DebugLog($"Usuario '{u.name}' ya existe por nombre o por email. Omitido.");
-    continue; // NO insertamos ni actualizamos
-}
+                    if (parsed["error"] != null)
+                    {
+                        MessageBox.Show("Error desde Odoo: " + parsed["error"]);
+                        return;
+                    }
 
-// 3️⃣ Buscar si coincide por ID (Odoo)
-var existe = db.Usuarios.FirstOrDefault(x => x.IdUsuario == u.id);
+                    var list = parsed["users"].ToObject<List<OdooUserDto>>();
 
-if (existe == null)
-{
-    db.Usuarios.Add(new Usuario
-    {
-        Nombre = FixLength(u.name ?? "OdooUser", 15),
-        Apellido = FixLength("Odoo", 15),
+                    int insertados = 0, actualizados = 0;
 
-        // Generamos NIF aleatorio, no importa para tu sistema
-        Nif = Guid.NewGuid().ToString("N").Substring(0, 10),
-
-        Rol = FixLength("cliente", 20),
-        Username = email,
-        Password = FixLength("1234", 15)
-    });
-
-    insertados++;
-}
-else
-{
-    // Actualizar SOLO si lo tenías por ID (opcional)
-    existe.Nombre = FixLength(u.name ?? existe.Nombre, 15);
-    existe.Username = email;
-
-    actualizados++;
-}
+                    using (var db = new FitDataContext())
+                    {
+                        foreach (var u in list)
+                        {
+                        // Normalizamos email para evitar nulos
+        string email = u.email ?? $"odoo{u.id}@fitdata.com";
+        email = FixLength(email, 15);
 
 
-                   
-                }
+        var existePorNombre = db.Usuarios.FirstOrDefault(x => x.Nombre == u.name);
 
-                await db.SaveChangesAsync();
-            }
 
-            MessageBox.Show(
-                $"Importación completada.\nInsertados: {insertados}\nActualizados: {actualizados}",
-                "OK", MessageBoxButtons.OK, MessageBoxIcon.Information
-            );
+        var existePorEmail = db.Usuarios.FirstOrDefault(x => x.Username == email);
 
-            CargarUsuarios();
+
+        if (existePorNombre != null || existePorEmail != null)
+        {
+            DebugLog($"Usuario '{u.name}' ya existe por nombre o por email. Omitido.");
+            continue; 
         }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("ERROR REAL:\n" + (ex.InnerException?.Message ?? ex.Message),
-            "EXCEPCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
+
+
+        var existe = db.Usuarios.FirstOrDefault(x => x.IdUsuario == u.id);
+
+        if (existe == null)
+        {
+            db.Usuarios.Add(new Usuario
+            {
+                Nombre = FixLength(u.name ?? "OdooUser", 15),
+                Apellido = FixLength("Odoo", 15),
+
+            
+                Nif = Guid.NewGuid().ToString("N").Substring(0, 10),
+
+                Rol = FixLength("cliente", 20),
+                Username = email,
+                Password = FixLength("1234", 15)
+            });
+
+            insertados++;
+        }
+        else
+        {
+
+            existe.Nombre = FixLength(u.name ?? existe.Nombre, 15);
+            existe.Username = email;
+
+            actualizados++;
+        }
+
+
+                        
+                        }
+
+                        await db.SaveChangesAsync();
+                    }
+
+                    MessageBox.Show(
+                        $"Importación completada.\nInsertados: {insertados}\nActualizados: {actualizados}",
+                        "OK", MessageBoxButtons.OK, MessageBoxIcon.Information
+                    );
+
+                    CargarUsuarios();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR REAL:\n" + (ex.InnerException?.Message ?? ex.Message),
+                    "EXCEPCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 private void CargarUsuarios()
