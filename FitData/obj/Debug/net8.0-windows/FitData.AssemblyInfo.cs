@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FitData")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+912ca0029bba8c77a195afe18287eb63413b0792")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+708a8d95caed99d78336da0da276d841d5c782ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("FitData")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FitData")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

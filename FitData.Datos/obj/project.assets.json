@@ -4748,11 +4748,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+      "projectUniqueName": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
       "projectName": "FitData.Datos",
-      "projectPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
+      "projectPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\FitData.Datos.csproj",
       "packagesPath": "C:\\Users\\jcortes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\obj\\",
+      "outputPath": "c:\\Users\\jcortes\\NET\\.NET\\FitData.Datos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jcortes\\AppData\\Roaming\\NuGet\\NuGet.Config"

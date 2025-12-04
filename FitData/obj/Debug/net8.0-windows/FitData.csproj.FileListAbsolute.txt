@@ -152,3 +152,5 @@ c:\Users\jcortes\NET\.NET\FitData\obj\Debug\net8.0-windows\refint\FitData.dll
 c:\Users\jcortes\NET\.NET\FitData\obj\Debug\net8.0-windows\FitData.pdb
 C:\Users\jcortes\NET\.NET\FitData\obj\Debug\net8.0-windows\FitData.genruntimeconfig.cache
 C:\Users\jcortes\NET\.NET\FitData\obj\Debug\net8.0-windows\ref\FitData.dll
+c:\Users\jcortes\NET\.NET\FitData\bin\Debug\net8.0-windows\XmlRpcCore.dll
+c:\Users\jcortes\NET\.NET\FitData\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

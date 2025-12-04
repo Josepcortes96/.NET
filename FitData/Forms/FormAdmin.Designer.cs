@@ -35,6 +35,10 @@ namespace FitData.Forms
 
         private FitData.Controls.BotonRedondeado btnLogout;
 
+        // ==== NUEVOS BOTONES ====
+        private FitData.Controls.BotonRedondeado btnSyncOdoo;
+        private FitData.Controls.BotonRedondeado btnImportFromOdoo;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && components != null)
@@ -54,7 +58,6 @@ namespace FitData.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Panel Administrador";
 
-            // ==== LOGO ARRIBA DERECHA ====
             picLogo = new PictureBox();
             picLogo.Image = Image.FromFile(
                 System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "public", "FitData.jpg")
@@ -68,28 +71,75 @@ namespace FitData.Forms
             // ==== TABCONTROL ====
             tabControlAdmin = new TabControl();
             tabControlAdmin.Dock = DockStyle.Fill;
-            tabControlAdmin.Appearance = TabAppearance.Normal;
 
-            // ==== TABS ====
             tabUsuarios = new TabPage("Usuarios");
             tabActividades = new TabPage("Actividades");
             tabHorarios = new TabPage("Horarios");
             tabLista = new TabPage("Lista Espera");
 
-            // ==== ESTILO GENERAL ====
             ApplyTabDarkStyle(tabUsuarios);
             ApplyTabDarkStyle(tabActividades);
             ApplyTabDarkStyle(tabHorarios);
             ApplyTabDarkStyle(tabLista);
 
-            // ==== CREAR CONTENIDO DE CADA TAB ====
-            SetupTab(tabUsuarios, out dataGridViewUsuarios,
-                     out btnAddUsuario, out btnEditUsuario, out btnDeleteUsuario);
+            // ============================================================
+            // ####################   TAB USUARIOS   #######################
+            // ============================================================
+            {
+                TableLayoutPanel layout = new TableLayoutPanel();
+                layout.Dock = DockStyle.Fill;
+                layout.RowCount = 2;
+                layout.ColumnCount = 1;
 
-            btnAddUsuario.Click += btnAddUsuario_Click;
-            btnEditUsuario.Click += btnEditUsuario_Click;
-            btnDeleteUsuario.Click += btnDeleteUsuario_Click;
+                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+                layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
 
+                // GRID
+                dataGridViewUsuarios = new DataGridView();
+                dataGridViewUsuarios.Dock = DockStyle.Fill;
+                dataGridViewUsuarios.ReadOnly = true;
+                dataGridViewUsuarios.BackgroundColor = Color.FromArgb(60, 60, 60);
+                dataGridViewUsuarios.DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
+                dataGridViewUsuarios.DefaultCellStyle.ForeColor = Color.White;
+
+                // PANEL INFERIOR
+                FlowLayoutPanel panel = new FlowLayoutPanel();
+                panel.Dock = DockStyle.Fill;
+                panel.FlowDirection = FlowDirection.LeftToRight;
+                panel.Padding = new Padding(10);
+                panel.BackColor = Color.FromArgb(70, 70, 70);
+
+                // BOTONES CRUD
+                btnAddUsuario = CreateAdminButton("Añadir");
+                btnEditUsuario = CreateAdminButton("Editar");
+                btnDeleteUsuario = CreateAdminButton("Eliminar");
+
+                btnAddUsuario.Click += btnAddUsuario_Click;
+                btnEditUsuario.Click += btnEditUsuario_Click;
+                btnDeleteUsuario.Click += btnDeleteUsuario_Click;
+
+                panel.Controls.Add(btnAddUsuario);
+                panel.Controls.Add(btnEditUsuario);
+                panel.Controls.Add(btnDeleteUsuario);
+
+                // ======== BOTONES ODOO ABAJO =========
+                btnSyncOdoo = CreateAdminButton("Sincronizar Odoo");
+                btnSyncOdoo.Click += btnSyncOdoo_Click;
+
+                btnImportFromOdoo = CreateAdminButton("Importar desde Odoo");
+                btnImportFromOdoo.Click += btnImportFromOdoo_Click;
+
+                panel.Controls.Add(btnSyncOdoo);
+                panel.Controls.Add(btnImportFromOdoo);
+                // ======================================
+
+                layout.Controls.Add(dataGridViewUsuarios, 0, 0);
+                layout.Controls.Add(panel, 0, 1);
+
+                tabUsuarios.Controls.Add(layout);
+            }
+
+            // ==== TAB ACTIVIDADES ====
             SetupTab(tabActividades, out dataGridViewActividades,
                      out btnAddActividad, out btnEditActividad, out btnDeleteActividad);
 
@@ -97,6 +147,7 @@ namespace FitData.Forms
             btnEditActividad.Click += btnEditActividad_Click;
             btnDeleteActividad.Click += btnDeleteActividad_Click;
 
+            // ==== TAB HORARIOS ====
             SetupTab(tabHorarios, out dataGridViewHorarios,
                      out btnAddHorario, out btnEditHorario, out btnDeleteHorario);
 
@@ -104,10 +155,8 @@ namespace FitData.Forms
             btnEditHorario.Click += btnEditHorario_Click;
             btnDeleteHorario.Click += btnDeleteHorario_Click;
 
-            // LISTA ESPERA
-            SetupTab(tabLista, out dataGridViewLista,
-                     out btnDeleteLista);
-
+            // ==== TAB LISTA ====
+            SetupTab(tabLista, out dataGridViewLista, out btnDeleteLista);
             btnDeleteLista.Text = "Eliminar";
             btnDeleteLista.Click += btnDeleteLista_Click;
 
@@ -122,19 +171,18 @@ namespace FitData.Forms
             btnLogout.ForeColor = Color.White;
             btnLogout.Click += btnLogout_Click;
 
-            // ==== AGREGAR TABS ====
+            // ==== AÑADIR TABS ====
             tabControlAdmin.TabPages.Add(tabUsuarios);
             tabControlAdmin.TabPages.Add(tabActividades);
             tabControlAdmin.TabPages.Add(tabHorarios);
             tabControlAdmin.TabPages.Add(tabLista);
 
-            // ==== ADD CONTROLS ====
             this.Controls.Add(tabControlAdmin);
             this.Controls.Add(btnLogout);
         }
 
         // =====================================
-        //          FUNCIONES AUXILIARES
+        //   FUNCIONES AUXILIARES
         // =====================================
 
         private void ApplyTabDarkStyle(TabPage tab)
@@ -144,32 +192,28 @@ namespace FitData.Forms
             tab.Padding = new Padding(10);
         }
 
-        private void SetupTab(TabPage tab,
-                              out DataGridView grid,
-                              out FitData.Controls.BotonRedondeado btnAdd,
-                              out FitData.Controls.BotonRedondeado btnEdit,
-                              out FitData.Controls.BotonRedondeado btnDelete)
+        private void SetupTab(
+            TabPage tab,
+            out DataGridView grid,
+            out FitData.Controls.BotonRedondeado btnAdd,
+            out FitData.Controls.BotonRedondeado btnEdit,
+            out FitData.Controls.BotonRedondeado btnDelete)
         {
             TableLayoutPanel layout = new TableLayoutPanel();
             layout.Dock = DockStyle.Fill;
             layout.RowCount = 2;
             layout.ColumnCount = 1;
+
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
 
-            // GRID
             grid = new DataGridView();
             grid.Dock = DockStyle.Fill;
             grid.ReadOnly = true;
             grid.BackgroundColor = Color.FromArgb(60, 60, 60);
             grid.DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
             grid.DefaultCellStyle.ForeColor = Color.White;
-            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
-            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            grid.EnableHeadersVisualStyles = false;
-            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // PANEL DE BOTONES
             FlowLayoutPanel panel = new FlowLayoutPanel();
             panel.Dock = DockStyle.Fill;
             panel.FlowDirection = FlowDirection.LeftToRight;
@@ -190,26 +234,21 @@ namespace FitData.Forms
             tab.Controls.Add(layout);
         }
 
-        private void SetupTab(TabPage tab,
-                              out DataGridView grid,
-                              out FitData.Controls.BotonRedondeado btnDelete)
+        private void SetupTab(
+            TabPage tab,
+            out DataGridView grid,
+            out FitData.Controls.BotonRedondeado btnDelete)
         {
             TableLayoutPanel layout = new TableLayoutPanel();
             layout.Dock = DockStyle.Fill;
             layout.RowCount = 2;
             layout.ColumnCount = 1;
+
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
 
             grid = new DataGridView();
             grid.Dock = DockStyle.Fill;
-            grid.ReadOnly = true;
-            grid.BackgroundColor = Color.FromArgb(60, 60, 60);
-            grid.DefaultCellStyle.BackColor = Color.FromArgb(40, 40, 40);
-            grid.DefaultCellStyle.ForeColor = Color.White;
-            grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 30);
-            grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            grid.EnableHeadersVisualStyles = false;
 
             FlowLayoutPanel panel = new FlowLayoutPanel();
             panel.Dock = DockStyle.Fill;
@@ -218,6 +257,7 @@ namespace FitData.Forms
             panel.BackColor = Color.FromArgb(70, 70, 70);
 
             btnDelete = CreateAdminButton("Eliminar");
+
             panel.Controls.Add(btnDelete);
 
             layout.Controls.Add(grid, 0, 0);
