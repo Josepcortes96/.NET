@@ -34,7 +34,7 @@ namespace FitData.Forms
             txtNif.Text = u.Nif;
             txtRol.Text = u.Rol;
             txtUsername.Text = u.Username;
-            // No rellenamos el campo contraseña con el valor almacenado por seguridad
+           
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)

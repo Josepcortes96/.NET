@@ -39,11 +39,10 @@ namespace FitData.Forms
             dataGridViewMisReservas.DataSource = reservas;
         }
 
-        // Crear: abre FormSelectHorario para elegir horario visualmente
+        
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            // Pedimos al usuario que introduzca el Id del horario que quiere reservar.
-            // Usamos InputBox como sustituto ligero del diálogo eliminado.
+            
             string input = Interaction.InputBox("Introduce el Id del horario que quieres reservar:", "Seleccionar horario", "");
             if (string.IsNullOrWhiteSpace(input)) return;
 
